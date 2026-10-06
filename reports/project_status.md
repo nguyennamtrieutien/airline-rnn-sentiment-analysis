@@ -35,10 +35,22 @@ Các biên nhận ở `results/metrics/`: `artifact_verification.json`, `demo_ve
 
 Kiểm tra thông tin bìa theo mẫu, điền đóng góp thực tế của từng thành viên trong phụ lục và tập trình bày bằng kịch bản đã có. Mở PowerPoint trên máy trình chiếu để kiểm tra hiển thị thực tế. Báo cáo và slide đã viết đầy đủ; các ô đóng góp chưa rõ được để trống có chủ đích.
 
-Nếu muốn xác minh sâu các giả thuyết sarcasm/mixed sentiment/cleaning, hai người review độc lập 85 case rồi báo số case/agreement. Hiện chỉ có nhận xét của trợ lý; không công bố human agreement hoặc tỷ lệ sarcasm toàn dataset. Colab/cloud chưa chạy kiểm chứng trong lần này; README có hướng dẫn chuyển môi trường.
+Nếu muốn xác minh sâu các giả thuyết sarcasm/mixed sentiment/cleaning, hai người review độc lập 85 case rồi báo số case/agreement. Hiện chỉ có nhận xét của trợ lý; không công bố human agreement hoặc tỷ lệ sarcasm toàn dataset. Huấn luyện trên Colab/cloud chưa chạy kiểm chứng trong lần này; README có hướng dẫn chuyển môi trường.
 
 Test đã mở. Không chọn tiếp hyperparameter theo test hiện có. Khảo sát thêm preprocessing/LR/clipping hoặc comparator cần thiết kế vòng mới phù hợp và tách khỏi ma trận đã công bố.
 
 Cập nhật theo danh sách nhóm: Trịnh Nguyễn Anh Hào (2611307), Lê Huy Huân (2611308), Nguyễn Nam Triều Tiên (2611323). Website và Word đọc cùng metadata. Kiểm tra streaming/OOV/truncation/input và parity: `results/metrics/demo_analysis_verification.json`.
 
 Tên đề tài đã chốt: **Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN**. Website, bìa Word/slide, notebook và tên file bàn giao đã đồng bộ. Kiểm tra sau đổi tên xác nhận 376 tệp khoa học bất biến; tên API chuẩn và metadata checkpoint lịch sử được giữ để bảo toàn khả năng tải mô hình. Giao diện đã kiểm tra ở desktop 1.000 px và mobile 390 px, không tràn ngang.
+
+## GitHub và triển khai website miễn phí
+
+Mã nguồn, dataset, 22 run/checkpoints, notebook và tài liệu đã được đẩy lên repository công khai:
+https://github.com/nguyennamtrieutien/airline-rnn-sentiment-analysis
+
+Demo đã triển khai thành công trên GitHub Pages:
+https://nguyennamtrieutien.github.io/airline-rnn-sentiment-analysis/
+
+RNN chạy trực tiếp trong trình duyệt bằng Web Worker, dùng đúng trọng số float32 xuất từ checkpoint B5-balanced/seed3407; không huấn luyện lại. Tokenizer, P0, masking và kiến trúc được giữ nguyên. Đối chiếu 2.149 predictions test đã lưu và 18 câu bổ sung: 2.167 lớp dự đoán khớp, sai lệch xác suất lớn nhất 3,924×10⁻⁷. Đây là kiểm chứng chuyển đổi inference; không thay số liệu thực nghiệm trong báo cáo.
+
+GitHub Actions kiểm tra cú pháp, checksum và parity trước mỗi deploy. Website công khai đã kiểm tra ba câu, đủ tám khâu, đúng checkpoint, logo/tên nhóm, mobile390px không tràn ngang và không có lỗi JavaScript. Nội dung nhập không gửi đến API inference bên ngoài. Biên nhận: `browser_inference_verification.json`, `browser_ui_verification.json`, `github_pages_verification.json` trong `results/metrics/`. Hướng dẫn build, kiểm tra và deploy ở README.

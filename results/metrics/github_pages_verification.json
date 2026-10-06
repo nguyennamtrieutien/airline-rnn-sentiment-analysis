@@ -1,0 +1,53 @@
+{
+  "url": "https://nguyennamtrieutien.github.io/airline-rnn-sentiment-analysis/",
+  "health": {
+    "status": "ready",
+    "label_names": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "vocabulary_size": 4000,
+    "sequence_length": 40,
+    "config_id": "B5-balanced",
+    "seed": 3407,
+    "runtime": "browser-rnn",
+    "source_model_sha256": "94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9"
+  },
+  "results": [
+    {
+      "input": "Thank you for the helpful service!",
+      "sentiment": "Positive",
+      "score": "98.8%",
+      "completed_steps": 8,
+      "error": null
+    },
+    {
+      "input": "My flight was delayed again and nobody helped me.",
+      "sentiment": "Negative",
+      "score": "95.5%",
+      "completed_steps": 8,
+      "error": null
+    },
+    {
+      "input": "What time does flight 123 depart?",
+      "sentiment": "Negative",
+      "score": "94.0%",
+      "completed_steps": 8,
+      "error": null
+    }
+  ],
+  "mobile": {
+    "width": 390,
+    "overflow": false,
+    "logo_loaded": true,
+    "members": "2611307 - Trịnh Nguyễn Anh Hào2611308 - Lê Huy Huân2611323 - Nguyễn Nam Triều Tiên"
+  },
+  "page_errors": [],
+  "post_requests": [],
+  "external_requests": [],
+  "github_repository": "https://github.com/nguyennamtrieutien/airline-rnn-sentiment-analysis",
+  "workflow_run": "https://github.com/nguyennamtrieutien/airline-rnn-sentiment-analysis/actions/runs/37427147809",
+  "verified_deployment_commit": "cfdbd2b3e790016a59ceb6bbc86a8f10397575cf",
+  "status": "passed"
+}
