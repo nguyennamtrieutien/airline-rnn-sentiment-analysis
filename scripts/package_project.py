@@ -5,11 +5,11 @@ import zipfile
 
 root = Path(__file__).resolve().parents[1]
 target = root.parent / "airline-rnn-project.zip"
-skip_parts = {".venv", ".git", ".build", "node_modules", "__pycache__", ".pytest_cache", ".ipynb_checkpoints", ".DS_Store"}
+skip_parts = {".venv", ".git", ".build", "node_modules", "__pycache__", ".pytest_cache", ".ipynb_checkpoints", ".DS_Store", ".playwright-mcp"}
 with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
     for path in sorted(root.rglob("*")):
         relative = path.relative_to(root)
-        if not path.is_file() or any(part in skip_parts or part.endswith(".egg-info") for part in relative.parts):
+        if not path.is_file() or any(part in skip_parts or part.endswith(".egg-info") or part.startswith(".chart-data-") or part.startswith(".env") for part in relative.parts):
             continue
         if relative.parts[:2] == ("environment", "jupyter"):
             continue

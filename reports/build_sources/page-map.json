@@ -36,9 +36,6 @@
   "4.4. Kịch bản trình diễn và mở rộng": 28,
   "KẾT LUẬN": 29,
   "TÀI LIỆU THAM KHẢO": 30,
-  "PHỤ LỤC. TRUY VẾT VÀ THÔNG TIN NHÓM": 31,
-  "A.1. Fingerprint và nguồn số liệu": 31,
-  "A.2. Thành viên và đóng góp thực tế": 31,
   "Hình 2.1. Pipeline dữ liệu, huấn luyện và đánh giá với test holdout": 7,
   "Hình 2.2. Việc lọc của nguồn biến bài toán ba lớp thành binary": 9,
   "Hình 2.3. Ví dụ raw text và clean text của P0": 10,
@@ -73,7 +70,5 @@
   "Bảng 3.8. Ví dụ lỗi có bằng chứng; ID là row_id của dữ liệu gốc": 23,
   "Bảng 3.9. Điều kiện so sánh nguồn và thực nghiệm chính": 25,
   "Bảng 4.1. Các endpoint và hành vi đã kiểm tra": 27,
-  "Bảng 4.2. Các thư mục và artifact để truy vết": 27,
-  "Bảng A.1. Ánh xạ số liệu báo cáo sang artifact": 31,
-  "Bảng A.2. Danh sách thành viên nhóm": 31
+  "Bảng 4.2. Các thư mục và artifact để truy vết": 27
 }

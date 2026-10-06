@@ -40,7 +40,7 @@ python scripts/verify_browser_model.py
 
 ## Mở kết quả
 
-- `reports/final/BaoCao_Airline_RNN.docx`: báo cáo Word theo mẫu, 37 trang, 19 hình và 19 bảng; mục lục và trang bìa đã hoàn thiện.
+- `reports/final/BaoCao_Airline_RNN.docx`: báo cáo Word theo mẫu, 36 trang, 19 hình và 17 bảng; mục lục và trang bìa đã hoàn thiện.
 - `reports/final/ThuyetTrinh_Airline_RNN.pptx`: 16 slide có speaker notes, bảng và biểu đồ chỉnh sửa được.
 - `reports/final/KichBan_ThuyetTrinh_Demo.md`: lịch thuyết trình khoảng 13 phút, thao tác demo và câu hỏi phản biện dự kiến.
 - `notebooks/Airline_RNN_Complete.ipynb`: notebook đầy đủ, có output thực thi.
@@ -202,6 +202,6 @@ Mọi notebook output, bảng và phần chương thực nghiệm ghi rõ nguồ
 
 Thông tin trường/khoa, giảng viên và sinh viên trên bìa được lấy theo mẫu theo xác nhận của người cung cấp. File mẫu gốc không bị sửa. Word giữ công thức, bảng, mục lục liên kết và footer; sau khi biên tập làm đổi số trang, cần cập nhật số trang của mục lục hoặc tạo lại bằng nguồn authoring. PowerPoint được kiểm tra bằng package validators và import/render; chưa thử trực tiếp trên Microsoft PowerPoint. Mã tạo tài liệu dùng dependency riêng, không cần cài để chạy notebook/model/demo.
 
-Thông tin nhóm dùng chung ở `airline_rnn/web/project-info.json`: 2611307 Trịnh Nguyễn Anh Hào, 2611308 Lê Huy Huân, 2611323 Nguyễn Nam Triều Tiên. Word đã cập nhật trang bìa và phụ lục. `/api/analyze` trả NDJSON gồm trạng thái/kết quả từng khâu; `/api/predict` vẫn trả JSON prediction như trước. Có 25 test đã pass; kiểm tra HTTP và trace parity ở `results/metrics/demo_analysis_verification.json`.
+Thông tin nhóm dùng chung ở `airline_rnn/web/project-info.json`: 2611307 Trịnh Nguyễn Anh Hào, 2611308 Lê Huy Huân, 2611323 Nguyễn Nam Triều Tiên. Word đã cập nhật trang bìa. `/api/analyze` trả NDJSON gồm trạng thái/kết quả từng khâu; `/api/predict` vẫn trả JSON prediction như trước. Có 25 test đã pass; kiểm tra HTTP và trace parity ở `results/metrics/demo_analysis_verification.json`.
 
 Cách gọi và tên file đã thống nhất là RNN. Khi tạo mạng, alias `RNN` gọi lớp RNN thuần có sẵn của Keras; tên API chuẩn của thư viện và định danh trong checkpoint/provenance lịch sử vẫn được giữ để tải đúng trọng số. Thay đổi cách gọi không huấn luyện lại hoặc sửa số liệu. `sources/naming_migration.json` cùng `sources/training_source_before_naming.zip` xác thực nguồn cũ và nguồn hiện tại; cache chỉ được chấp nhận khi cấu hình, dữ liệu, seed và checksum artifact khớp. Dùng thư mục output mới để huấn luyện lại từ đầu.

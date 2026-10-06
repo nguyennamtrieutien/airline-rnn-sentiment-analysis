@@ -299,14 +299,6 @@ refs=[
 ('Chuan Guo, Geoff Pleiss, Yu Sun và Kilian Q. Weinberger (2017), On Calibration of Modern Neural Networks, ICML, PMLR 70, 1321–1330.','https://proceedings.mlr.press/v70/guo17a.html')]
 for i,(t,url) in enumerate(refs,1):
  z=p(f'[{i}] {t}\n{url}',size=11.5,align=WD_ALIGN_PARAGRAPH.LEFT,indent=0,after=8);z.paragraph_format.line_spacing=1.05
-p('Tài liệu trực tuyến đối chiếu ngày 06/10/2026. Số liệu thực nghiệm lấy từ artifact của dự án, không lấy từ các bài báo lý thuyết.',size=11.5,indent=0)
-heading('PHỤ LỤC. TRUY VẾT VÀ THÔNG TIN NHÓM',1,True)
-heading('A.1. Fingerprint và nguồn số liệu')
-p('SHA-256 của Tweets.csv gốc: ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e. Model cuối: 94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9. Các hash đầy đủ cho tokenizer/config/label map nằm trong models/final/manifest.json. Dùng hash để kiểm tra file chuyển máy không bị thay đổi.')
-table('Bảng A.1. Ánh xạ số liệu báo cáo sang artifact',['Nội dung','Nguồn trong project'],[['Validation / test mean±SD','results/tables/validation_summary.csv; test_summary.csv'],['Per-class / CM demo','final_per_class.csv; B5-balanced_seed-3407_test.json'],['Split / chất lượng dữ liệu','dataset_splits.csv; exclusions.csv; data/splits/'],['History / epoch / time','models/runs/*/seed-*/history.csv và metadata'],['Ví dụ/qualitative hypotheses','manual_error_review.csv; assistant_error_review.csv'],['Mục đích 23 hình','results/figures/manifest.json'],['Protocol verification','results/metrics/artifact_verification.json']],[5,10.5],11)
-heading('A.2. Thành viên và đóng góp thực tế')
-p('Nhóm thực hiện gồm ba thành viên dưới đây. Phần đóng góp được điền theo công việc thực tế của từng thành viên.',size=12)
-table('Bảng A.2. Danh sách thành viên nhóm',['Họ tên','MSSV','Đóng góp thực tế'],[[m['name'],m['student_id'],'[Nhóm điền]'] for m in GROUP['members']],[6,3,6.5],12)
 # Fill source-styled native front matter with measured cached entries and internal hyperlinks.
 entries=[(t,k,11 if lev==1 else 10.5,lev==1,0 if lev==1 else .45) for t,lev,k in headings if lev<=2 and not t.startswith('A.')]
 # Two fixed TOC pages, split at balanced entry count.

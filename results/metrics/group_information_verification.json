@@ -1,0 +1,28 @@
+{
+  "verified_at_utc": "2026-10-06T07:21:00.031942+00:00",
+  "status": "passed",
+  "class_removed_from": [
+    "website metadata",
+    "website footer",
+    "Word cover",
+    "PowerPoint cover",
+    "document builders"
+  ],
+  "user_current_word_preserved": true,
+  "user_confirmed_appendix_removed": true,
+  "stale_contents_entries_removed": 3,
+  "word_pages": 36,
+  "word_tables": 17,
+  "word_figures_excluding_logo": 19,
+  "word_internal_hyperlinks_valid": 72,
+  "pptx_slides": 16,
+  "pptx_only_changed_payload": "ppt/slides/slide1.xml",
+  "public_website_verified_no_class": true,
+  "public_website_analysis_steps": 8,
+  "sentiment_output_classes_preserved": 3,
+  "frozen_model_assets_unchanged": true,
+  "deliverables": {
+    "reports/final/BaoCao_Airline_RNN.docx": "7aa0c62c311ce0bece4bd2b6477507dfa9ffab44a5bf3a7d3a28f77e1b723f03",
+    "reports/final/ThuyetTrinh_Airline_RNN.pptx": "d872019227d06a917821c35f186cde24f3a1781d8dde9ad7b07d5a1d05798675"
+  }
+}

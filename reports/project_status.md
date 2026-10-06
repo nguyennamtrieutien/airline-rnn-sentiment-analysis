@@ -14,7 +14,7 @@ Phần thực nghiệm và tài liệu bàn giao hoàn tất: **22 run RNN, 8 co
 | 7 — Mô hình cuối | B5-balanced, demo seed 3407 chọn bằng validation trước test | Selection/manifest/final bundle |
 | 8 — Error analysis | CM/slices/examples và nhận xét riêng của trợ lý cho 85 case hoàn tất; chưa có hai người review | `error_analysis.md`, assistant/manual review CSV |
 | 9 — Demo/inference | Website có logo trường/thông tin nhóm và stream tám khâu, trace khớp inference cũ | Demo verification/rehearsal JSON, F23 |
-| 10 — Báo cáo/thuyết trình | Word 37 trang, 19 hình/19 bảng; PPTX 16 slide; kịch bản 12 phút 45 giây | `reports/final/`, nguồn authoring, CSV/PNG/PDF |
+| 10 — Báo cáo/thuyết trình | Word 36 trang, 19 hình/17 bảng; PPTX 16 slide; kịch bản 12 phút 45 giây | `reports/final/`, nguồn authoring, CSV/PNG/PDF |
 
 Kết quả test ba lớp, **mean ± SD qua ba training seeds trên cùng split**: Accuracy **75,18% ± 1,34 điểm phần trăm**, Macro-F1 **0,6914 ± 0,0158**, Weighted-F1 mean **0,7568**, N=2.149. Checkpoint seed 3407 dùng cho demo/CM riêng có Accuracy 0,753839 và Macro-F1 0,686875. Source 90,32% là output LSTM/binary lịch sử, không phải kết quả nhóm tái lập chính xác.
 
@@ -33,7 +33,7 @@ Các biên nhận ở `results/metrics/`: `artifact_verification.json`, `demo_ve
 
 ## Việc nhóm cần làm trước khi nộp
 
-Kiểm tra thông tin bìa theo mẫu, điền đóng góp thực tế của từng thành viên trong phụ lục và tập trình bày bằng kịch bản đã có. Mở PowerPoint trên máy trình chiếu để kiểm tra hiển thị thực tế. Báo cáo và slide đã viết đầy đủ; các ô đóng góp chưa rõ được để trống có chủ đích.
+Kiểm tra thông tin bìa theo mẫu, ghi đóng góp thực tế của từng thành viên và tập trình bày bằng kịch bản đã có. Mở PowerPoint trên máy trình chiếu để kiểm tra hiển thị thực tế. Báo cáo và slide đã viết đầy đủ; các ô đóng góp chưa rõ được để trống có chủ đích.
 
 Nếu muốn xác minh sâu các giả thuyết sarcasm/mixed sentiment/cleaning, hai người review độc lập 85 case rồi báo số case/agreement. Hiện chỉ có nhận xét của trợ lý; không công bố human agreement hoặc tỷ lệ sarcasm toàn dataset. Huấn luyện trên Colab/cloud chưa chạy kiểm chứng trong lần này; README có hướng dẫn chuyển môi trường.
 
@@ -54,3 +54,5 @@ https://nguyennamtrieutien.github.io/airline-rnn-sentiment-analysis/
 RNN chạy trực tiếp trong trình duyệt bằng Web Worker, dùng đúng trọng số float32 xuất từ checkpoint B5-balanced/seed3407; không huấn luyện lại. Tokenizer, P0, masking và kiến trúc được giữ nguyên. Đối chiếu 2.149 predictions test đã lưu và 18 câu bổ sung: 2.167 lớp dự đoán khớp, sai lệch xác suất lớn nhất 3,924×10⁻⁷. Đây là kiểm chứng chuyển đổi inference; không thay số liệu thực nghiệm trong báo cáo.
 
 GitHub Actions kiểm tra cú pháp, checksum và parity trước mỗi deploy. Website công khai đã kiểm tra ba câu, đủ tám khâu, đúng checkpoint, logo/tên nhóm, mobile390px không tràn ngang và không có lỗi JavaScript. Nội dung nhập không gửi đến API inference bên ngoài. Biên nhận: `browser_inference_verification.json`, `browser_ui_verification.json`, `github_pages_verification.json` trong `results/metrics/`. Hướng dẫn build, kiểm tra và deploy ở README.
+
+Cập nhật thông tin nhóm: đã bỏ lớp chung khỏi Word, slide, website và metadata/nguồn tạo tài liệu. Giữ bản Word hiện tại không có phụ lục A.1–A.2 theo lựa chọn của nhóm; xóa ba dòng mục lục/danh mục bảng dẫn tới phần đã bỏ. Bản Word hiện có 36 trang, 19 hình và 17 bảng.
