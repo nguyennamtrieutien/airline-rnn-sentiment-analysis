@@ -31,7 +31,7 @@ const s=P.slides.add();s.background.fill=N;slides.push(s);texts.push({number:1,t
 txt(s,'TRƯỜNG ĐẠI HỌC CÔNG NGHỆ KỸ THUẬT TP. HỒ CHÍ MINH',64,34,1152,32,20,'#C5D9E7');
 txt(s,'Xây dựng mô hình phân tích\ncảm xúc khách hàng trong\nngành hàng không sử dụng RNN',64,142,1152,240,49,'#FFFFFF',true);
 txt(s,'Thực nghiệm ba lớp với quy trình tái lập',68,425,1110,55,32,'#C5D9E7');
-txt(s,GROUP.members.map(m=>m.student_id+' – '+m.name).join('\n')+'\nGVHD: '+GROUP.teacher+'   ·   '+GROUP.class_name,68,506,1100,122,22,'#FFFFFF');
+txt(s,GROUP.members.map(m=>m.student_id+' – '+m.name).join('\n')+'\nGVHD: '+GROUP.teacher,68,506,1100,122,22,'#FFFFFF');
 txt(s,'Khoa Công nghệ thông tin   ·   2026',68,645,1100,35,20,'#C5D9E7');
 texts[0].title=GROUP.title;
 notes(s,'Kính chào thầy và các bạn. Đề tài nghiên cứu RNN cho sentiment của tweet hàng không với ba lớp negative, neutral và positive. Trình bày tập trung vào audit nguồn, protocol tái lập, các đối chứng có kiểm soát và kết quả thực đo. Đề tài: Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN. Ba thành viên gồm Trịnh Nguyễn Anh Hào 2611307, Lê Huy Huân 2611308, Nguyễn Nam Triều Tiên 2611323.','Báo cáo Word; results/tables/test_summary.csv');}

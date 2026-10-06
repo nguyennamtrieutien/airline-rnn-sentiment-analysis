@@ -29,7 +29,7 @@ for old,new in [('TIỂU LUẬN CHUYÊN NGÀNH','TIỂU LUẬN HỌC PHẦN'),('
    for r in runs:r.text=''
    runs[0].text=new
 # Fill the four existing cover slots, keeping the original cover topology.
-cover_lines=['NHÓM THỰC HIỆN - LỚP '+GROUP['class_name']]+[m['student_id']+' - '+m['name'].upper() for m in GROUP['members']]
+cover_lines=['NHÓM THỰC HIỆN']+[m['student_id']+' - '+m['name'].upper() for m in GROUP['members']]
 for i,text in zip([11,12,13,14],cover_lines):
  z=D.paragraphs[i]
  for run in z.runs:run.text=''
