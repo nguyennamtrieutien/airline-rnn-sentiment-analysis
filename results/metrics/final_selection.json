@@ -1,0 +1,41 @@
+{
+  "winner_config": "B5-balanced",
+  "demo_seed": 3407,
+  "criterion": "mean_validation_macro_f1; tolerance<0.005; fewer_parameters; median_training_time; frozen_order",
+  "demo_seed_policy": "median_validation_macro_f1_before_test",
+  "tier": "recommended",
+  "matrix_sha256": "d90c1078f7a2fd19fc511007720eab5df6b90648ab317f1b8a9640aeaa14b0be",
+  "run_fingerprints": {
+    "A1/seed-42": "39284d8ab9a4b897b81a74b06798161fe0816fa5afbe26142814a3113160a57c",
+    "A2/seed-42": "f25bf6086a200f14c1d0a58e0159694c329e95ec7d5a7e3c708f22e20b9125dd",
+    "A2/seed-2026": "d463035d55db8daae78ad9f63520e13d1fc07cd68d7010952471cfd9e05cadb7",
+    "A2/seed-3407": "279f3d7e00f98e662eb6df25e299b34b9043b6d245d7c249d7c0d651b9c7a916",
+    "C0/seed-42": "9bcf75c1d1b9b902f0c6ddb83419fe4b24afc069d91f430302ed9c98c80819f5",
+    "C0/seed-2026": "23d8be6aa25654c98e594441ed5c7ce3aac746698b39423458cd7a9f2d03031b",
+    "C0/seed-3407": "3d5016b9463604a0ae04256ed7c554e13934d54d6498b8de45f5739dceb7226e",
+    "B1-20/seed-42": "0f954b1dc63c2fd623595dcd4a45cfd913b32a5b2a44e592822ed7c9d2cd5d15",
+    "B1-20/seed-2026": "f970a255791c3121a29372a18feea62745fbaeae8587341ac45a25077815c1d4",
+    "B1-20/seed-3407": "1b0a71ef3ea38ec9305219f83c9b78b5780c683e01fe6e2e384e253a252e2614",
+    "B1-60/seed-42": "34e33fa66d9b201b4c3da9f1e5a91f5c890c7a5442612535f82306dc3685a791",
+    "B1-60/seed-2026": "68037349632eb9a79e2b4e0b5850b046d9fc43eca74ab5aa72f5e3dc45a4d40d",
+    "B1-60/seed-3407": "7e3b9c0967049c742b0e572c904ecdf88897f763e1771f64b478885aa3af2e6b",
+    "B3-64/seed-42": "39176ac2baa86b9b386efe2b403e5e8db09275764a04d73c309138692242de3f",
+    "B3-64/seed-2026": "768fcb8d5b80e0e7ca03bfb52ba3742cecab12ed1ec411b6b0759adb18e55433",
+    "B3-64/seed-3407": "b188539bf4b2d6a89bbb72725b0be99108d344f64d8544f1e4b58f6e07351edc",
+    "B3-128/seed-42": "be7c06540b646f69ea0da659f8ff78a166060320c6477370fcd50ef1d543f6ed",
+    "B3-128/seed-2026": "fa0159c85da18a66e9acdb07e4bf8b37ddde6062ec2ded9142c25f25c2670a8e",
+    "B3-128/seed-3407": "9fc70fd5ae4627e981eb989ad8e6942510d7cdd39f49c362a2bcaf3b1f100ad6",
+    "B5-balanced/seed-42": "cab102fb207a05c42b1b90aae5e58faa29897230d2164ca957b8077a6ad0aee6",
+    "B5-balanced/seed-2026": "c058f372f6459af7a40206f37989ff17f0984a07629b24f259afe5650a7ab120",
+    "B5-balanced/seed-3407": "71783b0ced729da33f3ea27d1f6ec0d03ea63b21ee11393d1faeab6689d4fa58"
+  },
+  "test_configs": [
+    "A1",
+    "A2",
+    "C0",
+    "B5-balanced"
+  ],
+  "selection_signature": "5ba634c6f5c3d6308ad6bba34580d16ef565a9fff64fb91b55d605b13af6f3b0",
+  "frozen_at_utc": "2026-10-05T13:05:42.713868+00:00",
+  "test_status": "locked_until_evaluate_final"
+}

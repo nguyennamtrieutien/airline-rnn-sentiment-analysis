@@ -1,0 +1,5 @@
+benchmark,reason,rows
+binary,exact_duplicate_record,28
+binary,conflicting_labels_in_duplicate_group,8
+three_class,conflicting_labels_in_duplicate_group,251
+three_class,exact_duplicate_record,36

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airline-rnn"
+version = "0.1.0"
+description = "Reproducible RNN airline sentiment experiments"
+requires-python = ">=3.11,<3.14"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["airline_rnn*"]
+
+[tool.setuptools.package-data]
+airline_rnn = ["web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

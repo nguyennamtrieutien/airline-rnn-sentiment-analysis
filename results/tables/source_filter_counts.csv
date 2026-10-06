@@ -1,0 +1,4 @@
+,negative,neutral,positive
+Raw,9178,3099,2363
+Remove neutral,9178,0,2363
+Remove first 5k negative,4178,0,2363

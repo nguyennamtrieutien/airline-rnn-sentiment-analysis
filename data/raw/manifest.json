@@ -1,0 +1,7 @@
+{
+  "source": "https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/crowdflower/twitter-airline-sentiment",
+  "sha256": "ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e",
+  "rows": 14640,
+  "checked_at_utc": "2026-10-06T01:19:18.934861+00:00"
+}

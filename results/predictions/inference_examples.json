@@ -1,0 +1,53 @@
+[
+  {
+    "text": "@united Thank you for the helpful service!",
+    "sentiment": "positive",
+    "probabilities": {
+      "negative": 0.0032259314320981503,
+      "neutral": 0.008100916631519794,
+      "positive": 0.9886731505393982
+    },
+    "confidence": 0.9886731505393982,
+    "clean_text": "usermarker thank you for the helpful service",
+    "token_length": 7,
+    "unknown_tokens": 0,
+    "truncated": false,
+    "config_id": "B5-balanced",
+    "seed": 3407,
+    "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+  },
+  {
+    "text": "@AmericanAir My flight was delayed again and nobody helped me.",
+    "sentiment": "negative",
+    "probabilities": {
+      "negative": 0.9181810021400452,
+      "neutral": 0.05465804412961006,
+      "positive": 0.02716103196144104
+    },
+    "confidence": 0.9181810021400452,
+    "clean_text": "usermarker my flight was delayed again and nobody helped me",
+    "token_length": 10,
+    "unknown_tokens": 0,
+    "truncated": false,
+    "config_id": "B5-balanced",
+    "seed": 3407,
+    "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+  },
+  {
+    "text": "@Delta What time does flight 123 depart?",
+    "sentiment": "neutral",
+    "probabilities": {
+      "negative": 0.16896368563175201,
+      "neutral": 0.7098010182380676,
+      "positive": 0.12123522907495499
+    },
+    "confidence": 0.7098010182380676,
+    "clean_text": "usermarker what time does flight 123 depart",
+    "token_length": 7,
+    "unknown_tokens": 1,
+    "truncated": false,
+    "config_id": "B5-balanced",
+    "seed": 3407,
+    "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+  }
+]

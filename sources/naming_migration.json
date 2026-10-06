@@ -1,0 +1,31 @@
+{
+  "purpose": "Display naming migration only; original scientific runs and checkpoint files remain unchanged. Fresh training uses the current source fingerprint.",
+  "before_training_source_sha256": "780fdf3070028dfaf7562c4b99502d3ed8f22a67000817f59910a5d20f965e01",
+  "after_training_source_sha256": "2919b8d0e6ed1afb1f4c0ef63d45f411ced54237dd76190e38a4585b2020f606",
+  "training_snapshot": "training_source_before_naming.zip",
+  "training_snapshot_sha256": "c68adc2260fe2d3fd352ccb221c8eb5cc2f9d8589cc3f6ca4393a95b6b26f93f",
+  "before_files": {
+    "text.py": "7ca984cdf178f8c98ed7bc792e486451019c1184b862edc3129eb2f33d5f9dd8",
+    "data.py": "f5a0b570bcdfe467a7f5b4630ffba4d557e67938f175fc9a43330d38e70fda33",
+    "config.py": "1e1d31a593944271a2c976d1b75c7afaf8d3a68fe7990bd91c771c0eee1ddfd0",
+    "model.py": "ff5b3445db3f85e50845dc6b488564b956756da4dab3fbaa8cb05e113511d08c",
+    "training.py": "37259b2f5fbb7da23ee303d8487876d0aafbfec32330f12a14072e3cc0066742"
+  },
+  "after_files": {
+    "text.py": "7ca984cdf178f8c98ed7bc792e486451019c1184b862edc3129eb2f33d5f9dd8",
+    "data.py": "f5a0b570bcdfe467a7f5b4630ffba4d557e67938f175fc9a43330d38e70fda33",
+    "config.py": "1e1d31a593944271a2c976d1b75c7afaf8d3a68fe7990bd91c771c0eee1ddfd0",
+    "model.py": "2c0d4ff51a3fc71fa38430931542bf42945864f50ef12643f95784c88c42545f",
+    "training.py": "269738537698e960b099a7be540a5c7bfd4fbab3ff70bbd8a28a52a28c0650ca"
+  },
+  "changed_files": [
+    "model.py",
+    "training.py"
+  ],
+  "changes": [
+    "Public RNN alias and model/layer display names",
+    "Display names in summaries for new runs",
+    "Strict fingerprint compatibility for completed cached runs backed by archived source"
+  ],
+  "framework_api_exception": "Keras recurrent API and serialized checkpoint identities must retain their framework names."
+}

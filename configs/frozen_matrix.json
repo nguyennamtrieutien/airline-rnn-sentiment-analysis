@@ -1,0 +1,251 @@
+{
+  "tier": "recommended",
+  "matrix": [
+    {
+      "config": {
+        "id": "A1",
+        "benchmark": "binary_source",
+        "vocabulary_size": 4000,
+        "sequence_length": null,
+        "hidden_units": 196,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": null,
+        "early_stopping": false,
+        "mask_zero": false
+      },
+      "seeds": [
+        42
+      ]
+    },
+    {
+      "config": {
+        "id": "A2",
+        "benchmark": "binary_clean",
+        "vocabulary_size": 4000,
+        "sequence_length": null,
+        "hidden_units": 196,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": null,
+        "early_stopping": true,
+        "mask_zero": false
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    },
+    {
+      "config": {
+        "id": "C0",
+        "benchmark": "three_class",
+        "vocabulary_size": 4000,
+        "sequence_length": 40,
+        "hidden_units": 196,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": 1.0,
+        "early_stopping": true,
+        "mask_zero": true
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    },
+    {
+      "config": {
+        "id": "B1-20",
+        "benchmark": "three_class",
+        "vocabulary_size": 4000,
+        "sequence_length": 20,
+        "hidden_units": 196,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": 1.0,
+        "early_stopping": true,
+        "mask_zero": true
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    },
+    {
+      "config": {
+        "id": "B1-60",
+        "benchmark": "three_class",
+        "vocabulary_size": 4000,
+        "sequence_length": 60,
+        "hidden_units": 196,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": 1.0,
+        "early_stopping": true,
+        "mask_zero": true
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    },
+    {
+      "config": {
+        "id": "B3-64",
+        "benchmark": "three_class",
+        "vocabulary_size": 4000,
+        "sequence_length": 40,
+        "hidden_units": 64,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": 1.0,
+        "early_stopping": true,
+        "mask_zero": true
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    },
+    {
+      "config": {
+        "id": "B3-128",
+        "benchmark": "three_class",
+        "vocabulary_size": 4000,
+        "sequence_length": 40,
+        "hidden_units": 128,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "none",
+        "gradient_clipnorm": 1.0,
+        "early_stopping": true,
+        "mask_zero": true
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    },
+    {
+      "config": {
+        "id": "B5-balanced",
+        "benchmark": "three_class",
+        "vocabulary_size": 4000,
+        "sequence_length": 40,
+        "hidden_units": 196,
+        "embedding_dimension": 128,
+        "spatial_dropout": 0.5,
+        "input_dropout": 0.3,
+        "recurrent_dropout": 0.3,
+        "output_dropout": 0.2,
+        "dense_units": 100,
+        "dense_dropout": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "max_epochs": 20,
+        "patience": 5,
+        "min_delta": 0.001,
+        "class_weighting": "balanced",
+        "gradient_clipnorm": 1.0,
+        "early_stopping": true,
+        "mask_zero": true
+      },
+      "seeds": [
+        42,
+        2026,
+        3407
+      ]
+    }
+  ],
+  "training_seeds": [
+    42,
+    2026,
+    3407
+  ],
+  "test_policy": "A1,A2,C0,winner only; after selection; no test during tuning",
+  "validation_tie_tolerance": 0.005,
+  "frozen_at_utc": "2026-10-05T12:44:39.101688+00:00"
+}

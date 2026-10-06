@@ -1,0 +1,8 @@
+Attribute,Value
+Source,https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment
+Raw rows,14640
+Raw columns,15
+Model input,text
+Target,airline_sentiment
+Main labels,"negative=0, neutral=1, positive=2"
+Raw SHA-256,ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e

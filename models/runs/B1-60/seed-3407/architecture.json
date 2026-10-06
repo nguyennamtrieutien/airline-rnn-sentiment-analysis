@@ -1,0 +1,44 @@
+[
+  {
+    "layer": "word_embedding",
+    "type": "Embedding",
+    "output_shape": "(None, 60, 128)",
+    "parameters": 512000
+  },
+  {
+    "layer": "embedding_dropout",
+    "type": "SpatialDropout1D",
+    "output_shape": "(None, 60, 128)",
+    "parameters": 0
+  },
+  {
+    "layer": "simple_rnn",
+    "type": "SimpleRNN",
+    "output_shape": "(None, 196)",
+    "parameters": 63700
+  },
+  {
+    "layer": "state_dropout",
+    "type": "Dropout",
+    "output_shape": "(None, 196)",
+    "parameters": 0
+  },
+  {
+    "layer": "dense_features",
+    "type": "Dense",
+    "output_shape": "(None, 100)",
+    "parameters": 19700
+  },
+  {
+    "layer": "dense_dropout",
+    "type": "Dropout",
+    "output_shape": "(None, 100)",
+    "parameters": 0
+  },
+  {
+    "layer": "sentiment_probabilities",
+    "type": "Dense",
+    "output_shape": "(None, 3)",
+    "parameters": 303
+  }
+]

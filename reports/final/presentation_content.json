@@ -1,0 +1,98 @@
+[
+  {
+    "number": 1,
+    "title": "Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN",
+    "notes": "Kính chào thầy và các bạn. Đề tài nghiên cứu RNN cho sentiment của tweet hàng không với ba lớp negative, neutral và positive. Trình bày tập trung vào audit nguồn, protocol tái lập, các đối chứng có kiểm soát và kết quả thực đo. Đề tài: Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN. Ba thành viên gồm Trịnh Nguyễn Anh Hào 2611307, Lê Huy Huân 2611308, Nguyễn Nam Triều Tiên 2611323.",
+    "sources": "Báo cáo Word; results/tables/test_summary.csv"
+  },
+  {
+    "number": 2,
+    "title": "Notebook nguồn thực tế dùng LSTM và hai lớp",
+    "notes": "Tên notebook ghi RNN nhưng code thực tế dùng LSTM và bỏ toàn bộ neutral, sau đó bỏ 5.000 negative đầu. Nguồn fit tokenizer trên corpus trước chia tập. Audit A1 phát hiện 68 tweet_id và 85 clean text trùng qua splits. Những khác biệt này giới hạn cách so sánh với con số 90,32%. Nhóm giữ yêu cầu RNN, vì thế gọi A1 là baseline chuyển thể, không công bố tái lập chính xác nguồn. Chưa lượng hóa mức Accuracy tăng do overlap.",
+    "sources": "https://www.kaggle.com/code/chibuzorokocha/airline-sentiment-analysis-90-accuracy-using-rnn ; reports/source_audit.md"
+  },
+  {
+    "number": 3,
+    "title": "Negative chiếm 62,69% dữ liệu gốc",
+    "notes": "Dataset Twitter US Airline Sentiment của CrowdFlower chứa 14.640 dòng với negative 9.178, neutral 3.099 và positive 2.363. Mô hình chỉ nhận văn bản. Airline không làm feature, tweet_id hỗ trợ audit và grouping. Lớp negative chiếm đa số nên Accuracy riêng lẻ dễ che hiệu quả thấp ở neutral/positive. Majority baseline trên test sạch đạt 63,66% Accuracy nhưng Macro-F1 chỉ 0,2593. Các giá trị trong biểu đồ được làm tròn sáu chữ số thập phân; CSV giữ độ chính xác gốc.",
+    "sources": "https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment ; results/tables/dataset.csv"
+  },
+  {
+    "number": 4,
+    "title": "Nhóm dữ liệu trùng đi trọn vào một split",
+    "notes": "Dữ liệu sau audit còn 14.353 tweet. Nhóm trùng được nối bắc cầu bằng tweet_id, canonical raw text hoặc clean text. Mọi thành viên nhóm cùng split nên loại được overlap theo định nghĩa này. Stratification cố gắng giữ tỷ lệ lớp, số dòng thực tế lệch nhẹ tỷ lệ lý tưởng do nhóm không thể tách. Train-only vocabulary và test gate là hai cơ chế riêng. Chúng không loại được tất cả quan hệ ngữ nghĩa hoặc hội thoại gần nhau.",
+    "sources": "results/tables/dataset_splits.csv ; results/metrics/artifact_verification.json"
+  },
+  {
+    "number": 5,
+    "title": "RNN cập nhật trạng thái theo thứ tự token",
+    "notes": "Mỗi token tra embedding 128 chiều rồi đi qua RNN. Trạng thái hiện tại là tanh của tổng biến đổi tuyến tính embedding và trạng thái trước. Mạng lấy trạng thái cuối của chuỗi đã masking, qua Dense100 và Dense3. Riêng RNN có H(D+H+1)=63.700 tham số, embedding có 512.000 nên chiếm phần lớn tổng. Padding ID0 được mask để không đưa phần đệm vào nội dung. Toàn bộ 22 run đều là RNN.",
+    "sources": "https://keras.io/api/layers/recurrent_layers/simple_rnn/ ; https://keras.io/api/layers/core_layers/embedding/ ; results/tables/final_architecture.csv"
+  },
+  {
+    "number": 6,
+    "title": "Checkpoint chọn bằng validation Macro-F1",
+    "notes": "Checkpoint dùng Macro-F1 lớn nhất trên toàn validation, tie thì val loss thấp hơn. Early Stopping giữ một mốc riêng với min_delta, nên không nhất thiết cùng checkpoint best. History lưu metric và wall time. Dropout giúp regularization, gradient clipping giới hạn exploding gradient nhưng không chữa hoàn toàn vanishing gradient. Main model có class weighting ở B5, validation metric không nhân class weights. Tổng wall time training của 22 run khoảng 19,91 phút trên CPU này.",
+    "sources": "results/tables/final_training_configuration.json ; environment/ ; https://arxiv.org/abs/1211.5063 ; https://arxiv.org/abs/1412.6980"
+  },
+  {
+    "number": 7,
+    "title": "A2 cho thấy biến thiên lớn giữa training seeds",
+    "notes": "A1 giữ source pipeline, chỉ chuyển mạng hồi quy sang RNN và dùng learning rate tường minh. A2 sạch hơn nhưng vẫn source cleaner và không masking/clipping; nhiều thành phần khác nên không phải ablation một yếu tố. Seed42 dừng epoch6 với checkpoint1 và thiên negative. Hai seed khác tốt hơn, vì vậy độ lệch chuẩn cao là thông tin chính. Nhóm không loại run xấu và không lấy seed 3407 làm đại diện cho mean A2.",
+    "sources": "results/tables/test_summary.csv ; results/tables/test_runs.csv ; reports/experiment_chapter.md"
+  },
+  {
+    "number": 8,
+    "title": "Các đối chứng B chỉ đổi một yếu tố so với C0",
+    "notes": "Ma trận chính có sáu configurations, gồm mốc C0 và năm thay đổi độc lập trong ba nhóm nghiên cứu. Tổng tính cả A1/A2 là tám configurations và 22 run. Không khảo sát dropout, learning rate, embedding dimension hoặc vocabulary size trong lần chạy này. B1-60 giữ nguyên mọi thứ trừ T, B3 thay H và B5 thay class weights. Không có test metrics cho các cấu hình B chưa thắng vì test chỉ dành cho đánh giá cuối.",
+    "sources": "configs/ ; results/tables/experiment_comparison.csv"
+  },
+  {
+    "number": 9,
+    "title": "B5-balanced có validation Macro-F1 cao nhất",
+    "notes": "B5 đạt mean validation Macro-F1 cao nhất 0,6926. Bar biểu diễn mean, SD của từng cấu hình có trong bảng Word/CSV. B3-128 và T20 quanh 0,6724 nhưng thấp hơn B5. Rule chọn xét Macro-F1 trước, nếu gần top dưới 0,005 mới dùng tham số rồi thời gian. B5 thắng nên chưa cần tie-break. Seed demo 3407 có Macro-F1 validation trung vị, không chọn seed tốt nhất trên test. Các giá trị trong biểu đồ được làm tròn sáu chữ số thập phân; CSV giữ độ chính xác gốc.",
+    "sources": "results/tables/validation_summary.csv ; results/metrics/final_selection.json"
+  },
+  {
+    "number": 10,
+    "title": "T60 tăng thời gian nhưng không thêm token thật",
+    "notes": "Phân bố token sau P0 có median 20, max train 34. T60 không thêm ngữ cảnh so với T40 nên kết quả validation bằng nhau từng seed. Time tăng 42% là cost phần đệm ở triển khai hiện tại. H64 nhanh nhất nhưng mean Macro-F1 gần C0, H128 có chất lượng nhỉnh hơn và ít thời gian hơn H196. Chưa có benchmark latency hoặc peakRAM theo config, số trên là wall time training gồm tính metrics, không phải inference time. Các giá trị trong biểu đồ được làm tròn sáu chữ số thập phân; CSV giữ độ chính xác gốc.",
+    "sources": "results/tables/validation_summary.csv ; results/figures/F05_train_lengths.png"
+  },
+  {
+    "number": 11,
+    "title": "Checkpoint demo ở epoch 16 trong 20 epoch",
+    "notes": "Đường F1 được tính ở chế độ inference toàn train/validation, không trung bình minibatch. Checkpoint 16 đạt validation Macro-F1 tốt nhất của seed 3407. Accuracy trong fit có dropout còn validation tắt, nên hai đường không cùng chế độ. B5 train loss còn có class weights, vì vậy không so trị số loss với C0 để kết luận model tốt hơn. Xem ba hình loss, Accuracy, F1 riêng trong Word cho phân tích hội tụ đầy đủ. Các giá trị trong biểu đồ được làm tròn sáu chữ số thập phân; CSV giữ độ chính xác gốc.",
+    "sources": "models/runs/B5-balanced/seed-3407/history.csv ; model_summary.txt"
+  },
+  {
+    "number": 12,
+    "title": "B5 đạt test Macro-F1 trung bình 0,6914",
+    "notes": "B5 đạt test Accuracy trung bình 75,18%, SD 1,34 điểm phần trăm; Macro-F1 trung bình 0,6914, SD 0,0158; Weighted-F1 trung bình 0,7568. C0 đạt Macro-F1 trung bình 0,6515, nên chênh lệch khoảng 0,0399. Đây là trung bình ba training seeds trên cùng split, không phải ensemble. Ba run chưa chứng minh ý nghĩa thống kê trên những split hoặc miền khác. Checkpoint demo riêng đạt Accuracy 75,38% và Macro-F1 0,6869. Confusion matrix tiếp theo thuộc checkpoint này. Các giá trị trong biểu đồ được làm tròn sáu chữ số thập phân; CSV giữ độ chính xác gốc.",
+    "sources": "results/tables/test_summary.csv ; results/metrics/B5-balanced_seed-3407_test.json"
+  },
+  {
+    "number": 13,
+    "title": "Neutral thường nhầm negative, positive nhầm neutral",
+    "notes": "Hàng của confusion matrix là nhãn thật, cột là dự đoán. Negative đúng 1.153 trên 1.368; neutral đúng 254 trên 448; positive đúng 213 trên 333. F1 lần lượt là 0,8481, 0,5342 và 0,6783. Khi so mean C0 với B5 qua ba seeds, class weighting giảm F1 negative từ 0,8596 xuống 0,8438, tăng neutral từ 0,4754 lên 0,5410 và positive từ 0,6196 lên 0,6895. Sự đánh đổi theo lớp giúp giải thích tại sao Accuracy ít tăng nhưng Macro-F1 cải thiện. Phân biệt các số của checkpoint demo trên hình với trung bình ba seeds. Các giá trị trong biểu đồ được làm tròn sáu chữ số thập phân; CSV giữ độ chính xác gốc.",
+    "sources": "results/tables/final_per_class.csv ; results/tables/baseline_final_per_class.csv ; results/metrics/B5-balanced_seed-3407_test.json"
+  },
+  {
+    "number": 14,
+    "title": "Lỗi chứa cảm xúc pha trộn và thiếu ngữ cảnh",
+    "notes": "Tweet 9332 dùng awesome ở đầu, nhưng WTH và sự cố gợi ý mỉa mai. Tweet 1537 khen hãng khác trong khi sentiment gán cho hãng được đề cập là negative; P0 làm mất tên hãng trong mentions. Đây là giả thuyết dựa trên văn bản, chưa có attribution hoặc ablation cleaning để xác định nguyên nhân. Trợ lý đã đọc 85 case raw/clean; nhóm chưa có hai người đánh giá độc lập. Accuracy của nhóm tweet dài cao hơn nhưng Macro-F1 thấp và negative chiếm đa số, nên chưa kết luận tweet dài dễ hơn. Giữ nhãn dataset khi tính metric, kể cả case có nhãn đáng xem lại.",
+    "sources": "results/predictions/assistant_error_review.csv ; results/predictions/manual_error_review.csv ; results/tables/error_slices.csv"
+  },
+  {
+    "number": 15,
+    "title": "Demo tải đúng checkpoint đã đánh giá",
+    "notes": "Chuyển sang demo local, nhập câu cảm ơn như ảnh hoặc dùng một testcase đã lưu. Demo tải model và tokenizer đã đóng băng. Ba giá trị hiển thị là output softmax chưa hiệu chỉnh; giá trị 98% không đảm bảo xác suất dự đoán đúng ngoài thực tế là 98%. Có thể thử một case sai để trình bày hạn chế. Nếu runtime chưa sẵn trên máy trình chiếu, dùng ảnh chụp request thật đã kiểm tra này và nói rõ đang trình bày ảnh. Demo chưa được hosting public. Hướng dẫn khởi động có trong README.",
+    "sources": "airline_rnn/demo.py ; results/metrics/demo_verification.json ; results/figures/F23_demo.png"
+  },
+  {
+    "number": 16,
+    "title": "Kết quả có thể truy vết, neutral còn là hạn chế",
+    "notes": "Kết quả chính gồm quy trình có thể chạy lại và số liệu thực đo. Cần đặt 90% của nguồn LSTM binary và 75% của RNN ba lớp trong các điều kiện đánh giá khác nhau, đồng thời giữ đầy đủ các training seeds. Class weighting cải thiện các lớp ít mẫu trong miền đã khảo sát, với sự đánh đổi ở negative. Bước tiếp theo là nhóm rà 85 case, điền đóng góp thành viên, chạy lại trên môi trường thứ hai và thiết kế holdout mới nếu khảo sát thêm. LSTM, GRU và BERT chỉ thuộc một phần mở rộng riêng nếu được thực hiện. Xin cảm ơn và sẵn sàng trao đổi.",
+    "sources": "reports/final/BaoCao_Airline_RNN.docx ; README.md ; reports/project_status.md"
+  }
+]

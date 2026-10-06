@@ -1,0 +1,40 @@
+{
+  "config_id": "A1",
+  "benchmark": "binary_source",
+  "sequence_length": 31,
+  "padding": "pre",
+  "truncating": "pre",
+  "legacy": true,
+  "tokenizer_sha256": "133266a276ed85aaaf94fa5eef02f142c41462bcb33e8c6f103eb060af0b6f33",
+  "split_sha256": "78f8dfca0a293078855173f6c12d3eb0ab0cf1238b58815b36a3a2ba4d80d758",
+  "dataset_sha256": "ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e",
+  "fit_row_ids_sha256": "73114eeb6da3f7fa2526aada1876cf383e2bbed31c81e4d1a82f7acef086fa28",
+  "fit_scope": "all_source_population",
+  "word_index_size": 9563,
+  "stats": {
+    "train": {
+      "rows": 3662,
+      "oov_token_rate": 0.050460735545951235,
+      "truncation_rate": 0.0,
+      "empty_sequence_count": 1,
+      "length_percentiles": {
+        "0.5": 18.0,
+        "0.9": 25.0,
+        "0.95": 26.0,
+        "0.99": 28.0
+      }
+    },
+    "validation": {
+      "rows": 916,
+      "oov_token_rate": 0.052411575562700964,
+      "truncation_rate": 0.0,
+      "empty_sequence_count": 0,
+      "length_percentiles": {
+        "0.5": 18.0,
+        "0.9": 25.0,
+        "0.95": 26.0,
+        "0.99": 28.0
+      }
+    }
+  }
+}

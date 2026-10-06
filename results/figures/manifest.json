@@ -1,0 +1,142 @@
+{
+  "F01_raw_sentiment": {
+    "png": "F01_raw_sentiment.png",
+    "pdf": "F01_raw_sentiment.pdf",
+    "purpose": "Class imbalance và population ba lớp gốc",
+    "scope": "raw CSV"
+  },
+  "F02_source_filtering": {
+    "png": "F02_source_filtering.png",
+    "pdf": "F02_source_filtering.pdf",
+    "purpose": "Thể hiện tác động lọc population trong nguồn",
+    "scope": "raw/source binary"
+  },
+  "F03_airlines": {
+    "png": "F03_airlines.png",
+    "pdf": "F03_airlines.pdf",
+    "purpose": "Độ không đồng đều theo airline",
+    "scope": "raw CSV"
+  },
+  "F04_airline_filtering": {
+    "png": "F04_airline_filtering.png",
+    "pdf": "F04_airline_filtering.pdf",
+    "purpose": "Kiểm tra thay đổi phân bố airline sau sampling",
+    "scope": "raw/source binary"
+  },
+  "F05_train_lengths": {
+    "png": "F05_train_lengths.png",
+    "pdf": "F05_train_lengths.pdf",
+    "purpose": "Cơ sở giải thích sequence coverage",
+    "scope": "C0 train only"
+  },
+  "F07_preprocessing": {
+    "png": "F07_preprocessing.png",
+    "pdf": "F07_preprocessing.pdf",
+    "purpose": "Các biến đổi preprocessing có thể kiểm tra",
+    "scope": "raw examples; no model prediction"
+  },
+  "F08_pipeline": {
+    "png": "F08_pipeline.png",
+    "pdf": "F08_pipeline.pdf",
+    "purpose": "Split-before-fit và test-release policy",
+    "scope": "C0/B"
+  },
+  "F10_model_summary": {
+    "png": "F10_model_summary.png",
+    "pdf": "F10_model_summary.pdf",
+    "purpose": "Kiến trúc model đã chạy",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F09_architecture": {
+    "png": "F09_architecture.png",
+    "pdf": "F09_architecture.pdf",
+    "purpose": "Pipeline layer shapes và parameter count",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F11_loss": {
+    "png": "F11_loss.png",
+    "pdf": "F11_loss.pdf",
+    "purpose": "Hội tụ và generalization gap; train fit có dropout, val không có",
+    "scope": "B5-balanced, seed=3407, three_class, train/validation N=2149"
+  },
+  "F12_accuracy": {
+    "png": "F12_accuracy.png",
+    "pdf": "F12_accuracy.pdf",
+    "purpose": "Hội tụ và generalization gap; train fit có dropout, val không có",
+    "scope": "B5-balanced, seed=3407, three_class, train/validation N=2149"
+  },
+  "F13_macro_f1": {
+    "png": "F13_macro_f1.png",
+    "pdf": "F13_macro_f1.pdf",
+    "purpose": "Hội tụ và generalization gap; train fit có dropout, val không có",
+    "scope": "B5-balanced, seed=3407, three_class, train/validation N=2149"
+  },
+  "F14_confusion_count": {
+    "png": "F14_confusion_count.png",
+    "pdf": "F14_confusion_count.pdf",
+    "purpose": "Số mẫu theo từng cặp nhầm",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F15_confusion_normalized": {
+    "png": "F15_confusion_normalized.png",
+    "pdf": "F15_confusion_normalized.pdf",
+    "purpose": "Phân bố nhầm lớp theo tỷ lệ",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F16_per_class_f1": {
+    "png": "F16_per_class_f1.png",
+    "pdf": "F16_per_class_f1.pdf",
+    "purpose": "Chất lượng giữa sentiment classes",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F17_correct_examples": {
+    "png": "F17_correct_examples.png",
+    "pdf": "F17_correct_examples.pdf",
+    "purpose": "Ví dụ prediction thực; không thay metric tổng thể",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F18_error_examples": {
+    "png": "F18_error_examples.png",
+    "pdf": "F18_error_examples.pdf",
+    "purpose": "Ví dụ prediction thực; không thay metric tổng thể",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F19_low_confidence": {
+    "png": "F19_low_confidence.png",
+    "pdf": "F19_low_confidence.pdf",
+    "purpose": "Các quyết định có softmax margin thấp",
+    "scope": "B5-balanced, seed=3407, three_class, test N=2149"
+  },
+  "F20_configuration_comparison": {
+    "png": "F20_configuration_comparison.png",
+    "pdf": "F20_configuration_comparison.pdf",
+    "purpose": "So sánh validation cùng split; SD không phải CI",
+    "scope": "C0/B validation"
+  },
+  "F21_quality_cost": {
+    "png": "F21_quality_cost.png",
+    "pdf": "F21_quality_cost.pdf",
+    "purpose": "Tradeoff chất lượng và wall time/parameter count",
+    "scope": "C0/B validation; same hardware"
+  },
+  "F06_representation_rates": {
+    "png": "F06_representation_rates.png",
+    "pdf": "F06_representation_rates.pdf",
+    "purpose": "Thông tin bị thay thế/cắt ở từng configuration",
+    "scope": "C0/B validation"
+  },
+  "F22_length_errors": {
+    "png": "F22_length_errors.png",
+    "pdf": "F22_length_errors.pdf",
+    "purpose": "Sai khác theo độ dài, có support và class mix đi kèm",
+    "scope": "B5-balanced test"
+  },
+  "F23_demo": {
+    "png": "F23_demo.png",
+    "pdf": "F23_demo.pdf",
+    "purpose": "Ảnh demo thật: nhập tweet và probabilities từ checkpoint đã chọn; không phải thêm test metric.",
+    "scope": "B5-balanced, seed 3407; new illustrative English sentence",
+    "report_variant_png": "F23_demo_report.png",
+    "report_variant_pdf": "F23_demo_report.pdf"
+  }
+}

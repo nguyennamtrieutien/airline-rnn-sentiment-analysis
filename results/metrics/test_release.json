@@ -1,0 +1,13 @@
+{
+  "released_at_utc": "2026-10-06T01:17:37.749672+00:00",
+  "selection_signature": "5ba634c6f5c3d6308ad6bba34580d16ef565a9fff64fb91b55d605b13af6f3b0",
+  "evaluated_configs": [
+    "A1",
+    "A2",
+    "C0",
+    "B5-balanced"
+  ],
+  "policy": "No further tuning on this holdout; final errors are descriptive analysis only.",
+  "first_test_prediction_at_utc": "2026-10-05T13:05:43.057596+00:00",
+  "registered_test_predictions_completed_at_utc": "2026-10-05T13:05:45.859865+00:00"
+}

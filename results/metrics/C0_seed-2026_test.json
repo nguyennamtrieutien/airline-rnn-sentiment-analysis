@@ -1,0 +1,72 @@
+{
+  "accuracy": 0.7408096789204281,
+  "macro_f1": 0.6498918771294183,
+  "weighted_f1": 0.7391731801673153,
+  "macro_precision": 0.6624337587365642,
+  "macro_recall": 0.6401748317866739,
+  "loss": 0.6780185103416443,
+  "support": 2149,
+  "label_names": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "confusion_matrix": [
+    [
+      1188,
+      160,
+      20
+    ],
+    [
+      170,
+      209,
+      69
+    ],
+    [
+      49,
+      89,
+      195
+    ]
+  ],
+  "classification_report": {
+    "negative": {
+      "precision": 0.8443496801705757,
+      "recall": 0.868421052631579,
+      "f1-score": 0.8562162162162162,
+      "support": 1368.0
+    },
+    "neutral": {
+      "precision": 0.45633187772925765,
+      "recall": 0.46651785714285715,
+      "f1-score": 0.4613686534216336,
+      "support": 448.0
+    },
+    "positive": {
+      "precision": 0.6866197183098591,
+      "recall": 0.5855855855855856,
+      "f1-score": 0.6320907617504052,
+      "support": 333.0
+    },
+    "accuracy": 0.7408096789204281,
+    "macro avg": {
+      "precision": 0.6624337587365642,
+      "recall": 0.6401748317866739,
+      "f1-score": 0.6498918771294183,
+      "support": 2149.0
+    },
+    "weighted avg": {
+      "precision": 0.739018804045248,
+      "recall": 0.7408096789204281,
+      "f1-score": 0.7391731801673153,
+      "support": 2149.0
+    }
+  },
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    negative     0.8443    0.8684    0.8562      1368\n     neutral     0.4563    0.4665    0.4614       448\n    positive     0.6866    0.5856    0.6321       333\n\n    accuracy                         0.7408      2149\n   macro avg     0.6624    0.6402    0.6499      2149\nweighted avg     0.7390    0.7408    0.7392      2149\n",
+  "evaluation_fingerprint": "18c7854ad8bb65ee202f8ec7d6043c5c47e0b2ff054660b75e2b5ca0d31f02a5",
+  "predictions_sha256": "037ef1bf938e4a8fd30d58f52bb2c9649136f709e61bbb7ee10c9f70bcc1efc9",
+  "config_id": "C0",
+  "seed": 2026,
+  "benchmark": "three_class",
+  "selection_signature": "5ba634c6f5c3d6308ad6bba34580d16ef565a9fff64fb91b55d605b13af6f3b0",
+  "evaluated_at_utc": "2026-10-05T13:05:44.531307+00:00"
+}

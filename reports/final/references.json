@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Bo Pang và Lillian Lee (2008), Opinion Mining and Sentiment Analysis, Foundations and Trends in Information Retrieval 2(1–2), 1–135.",
+    "url": "https://www.cs.cornell.edu/home/llee/opinion-mining-sentiment-analysis-survey.html",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 2,
+    "title": "Chibuzor Okocha, Airline Sentiment Analysis (90% Accuracy) using RNN, Kaggle; version 1/scriptVersionId 120745701. Bản nguồn và output audit lưu trong sources/.",
+    "url": "https://www.kaggle.com/code/chibuzorokocha/airline-sentiment-analysis-90-accuracy-using-rnn",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 3,
+    "title": "CrowdFlower, Twitter US Airline Sentiment, Kaggle dataset, Tweets.csv.",
+    "url": "https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 4,
+    "title": "Keras, Embedding layer, API documentation. Version triển khai dự án: Keras 3.11.3.",
+    "url": "https://keras.io/api/layers/core_layers/embedding/",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 5,
+    "title": "Keras, RNN layer, API documentation.",
+    "url": "https://keras.io/api/layers/recurrent_layers/simple_rnn/",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 6,
+    "title": "Razvan Pascanu, Tomas Mikolov và Yoshua Bengio (2013), On the Difficulty of Training Recurrent Neural Networks, arXiv:1211.5063.",
+    "url": "https://arxiv.org/abs/1211.5063",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 7,
+    "title": "Diederik P. Kingma và Jimmy Ba (2015), Adam: A Method for Stochastic Optimization, ICLR, arXiv:1412.6980.",
+    "url": "https://arxiv.org/abs/1412.6980",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 8,
+    "title": "Nitish Srivastava và cộng sự (2014), Dropout: A Simple Way to Prevent Neural Networks from Overfitting, JMLR 15, 1929–1958.",
+    "url": "https://jmlr.org/papers/v15/srivastava14a.html",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 9,
+    "title": "scikit-learn 1.7.2 documentation, f1_score; macro/weighted averaging và zero_division.",
+    "url": "https://scikit-learn.org/1.7/modules/generated/sklearn.metrics.f1_score.html",
+    "access_date": "2026-10-06"
+  },
+  {
+    "id": 10,
+    "title": "Chuan Guo, Geoff Pleiss, Yu Sun và Kilian Q. Weinberger (2017), On Calibration of Modern Neural Networks, ICML, PMLR 70, 1321–1330.",
+    "url": "https://proceedings.mlr.press/v70/guo17a.html",
+    "access_date": "2026-10-06"
+  }
+]

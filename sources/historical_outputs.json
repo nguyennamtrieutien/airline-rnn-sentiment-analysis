@@ -1,0 +1,19 @@
+{
+  "type": "historical_source_output_not_our_training",
+  "source_url": "https://www.kaggle.com/code/chibuzorokocha/airline-sentiment-analysis-90-accuracy-using-rnn",
+  "version": 1,
+  "script_version_id": 120745701,
+  "model": "LSTM",
+  "labels": [
+    "negative",
+    "positive"
+  ],
+  "population_rows": 6541,
+  "test_accuracy": 0.9032094,
+  "test_loss": 0.6523001417498685,
+  "final_train_accuracy": 0.9962,
+  "final_val_accuracy": 0.9061,
+  "best_val_accuracy": 0.9258,
+  "best_val_accuracy_epoch": 11,
+  "evidence": "Code downloaded via public Kaggle API; saved output inspected in Kaggle rendered notebook on 2026-10-05."
+}

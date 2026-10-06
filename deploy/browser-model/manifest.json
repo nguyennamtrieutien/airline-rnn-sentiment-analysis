@@ -1,0 +1,153 @@
+{
+  "format": "airline-rnn-browser-v1",
+  "dtype": "float32-le",
+  "tensors": [
+    {
+      "name": "embedding",
+      "shape": [
+        4000,
+        128
+      ],
+      "offset": 0,
+      "length": 512000
+    },
+    {
+      "name": "input_kernel",
+      "shape": [
+        128,
+        196
+      ],
+      "offset": 512000,
+      "length": 25088
+    },
+    {
+      "name": "recurrent_kernel",
+      "shape": [
+        196,
+        196
+      ],
+      "offset": 537088,
+      "length": 38416
+    },
+    {
+      "name": "rnn_bias",
+      "shape": [
+        196
+      ],
+      "offset": 575504,
+      "length": 196
+    },
+    {
+      "name": "dense_kernel",
+      "shape": [
+        196,
+        100
+      ],
+      "offset": 575700,
+      "length": 19600
+    },
+    {
+      "name": "dense_bias",
+      "shape": [
+        100
+      ],
+      "offset": 595300,
+      "length": 100
+    },
+    {
+      "name": "output_kernel",
+      "shape": [
+        100,
+        3
+      ],
+      "offset": 595400,
+      "length": 300
+    },
+    {
+      "name": "output_bias",
+      "shape": [
+        3
+      ],
+      "offset": 595700,
+      "length": 3
+    }
+  ],
+  "parameters": 595703,
+  "labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "config": {
+    "id": "B5-balanced",
+    "benchmark": "three_class",
+    "vocabulary_size": 4000,
+    "sequence_length": 40,
+    "hidden_units": 196,
+    "embedding_dimension": 128,
+    "spatial_dropout": 0.5,
+    "input_dropout": 0.3,
+    "recurrent_dropout": 0.3,
+    "output_dropout": 0.2,
+    "dense_units": 100,
+    "dense_dropout": 0.4,
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "max_epochs": 20,
+    "patience": 5,
+    "min_delta": 0.001,
+    "class_weighting": "balanced",
+    "gradient_clipnorm": 1.0,
+    "early_stopping": true,
+    "mask_zero": true
+  },
+  "representation": {
+    "config_id": "B5-balanced",
+    "benchmark": "three_class",
+    "sequence_length": 40,
+    "padding": "post",
+    "truncating": "post",
+    "legacy": false,
+    "tokenizer_sha256": "a25cfee0cb53001674deebfca6ea4fa1aaeb0f2a4a46dc5f3d3b92624e1f135e",
+    "split_sha256": "1a520dcff55d7b0ee6263e189be88f7bac47a418c082b28f0b9f00f93bf332b1",
+    "dataset_sha256": "ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e",
+    "fit_row_ids_sha256": "0d3819af28141899c85e1e16d29e20c70399d5cc8c65a6ac413820abf1c8d601",
+    "fit_scope": "train_only",
+    "word_index_size": 4000,
+    "stats": {
+      "train": {
+        "rows": 10043,
+        "oov_token_rate": 0.04260147029215391,
+        "truncation_rate": 0.0,
+        "empty_sequence_count": 0,
+        "length_percentiles": {
+          "0.5": 20.0,
+          "0.9": 26.0,
+          "0.95": 28.0,
+          "0.99": 30.0
+        }
+      },
+      "validation": {
+        "rows": 2161,
+        "oov_token_rate": 0.05775208734746307,
+        "truncation_rate": 0.0,
+        "empty_sequence_count": 0,
+        "length_percentiles": {
+          "0.5": 19.0,
+          "0.9": 26.0,
+          "0.95": 28.0,
+          "0.99": 30.0
+        }
+      }
+    }
+  },
+  "seed": 3407,
+  "source_model_sha256": "94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9",
+  "source_tokenizer_sha256": "a25cfee0cb53001674deebfca6ea4fa1aaeb0f2a4a46dc5f3d3b92624e1f135e",
+  "assets": {
+    "weights.bin": "9b99d7bc9dff7c14404c57828b6a903c76c3d9c9b3b967b1effa86702a5acc65",
+    "tokenizer.json": "a25cfee0cb53001674deebfca6ea4fa1aaeb0f2a4a46dc5f3d3b92624e1f135e",
+    "preprocessing.json": "3469851a05928131a0367533dae6ad4ea7a5ca81f83c21dbefd0b5e66d984d0b"
+  },
+  "softmax_is_calibrated": false
+}

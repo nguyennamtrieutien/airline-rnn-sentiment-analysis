@@ -1,0 +1,60 @@
+{
+  "checked_at_utc": "2026-10-06T06:39:01.780836+00:00",
+  "status": "passed",
+  "template_original_unchanged": true,
+  "template_sha256": "109371c4d948fccc48b0caea8aa78f5b2e76dbcb1a91faa7e302085653e43464",
+  "template_preserved_package_parts": 31,
+  "docx": {
+    "path": "reports/final/BaoCao_Airline_RNN.docx",
+    "sha256": "d415f8605d0fa67aa734b6493d3530fb6372d6d3032b191f07b7f53d371cf46f",
+    "rendered_pages": 37,
+    "figures": 19,
+    "tables": 19,
+    "native_equations": 6,
+    "page_mapping_verified": 77,
+    "hyperlink_bookmarks_valid": true,
+    "visual_qa": "Every changed page reviewed at full size; unchanged pages match prior render pixels. Final TOC page 5 and chapter 4 pages 32–34 rechecked after changing demo crop and page map.",
+    "native_word_app_tested": false,
+    "internal_hyperlinks": 75,
+    "members_on_cover_and_appendix": [
+      {
+        "student_id": "2611307",
+        "name": "Trịnh Nguyễn Anh Hào"
+      },
+      {
+        "student_id": "2611308",
+        "name": "Lê Huy Huân"
+      },
+      {
+        "student_id": "2611323",
+        "name": "Nguyễn Nam Triều Tiên"
+      }
+    ]
+  },
+  "pptx": {
+    "path": "reports/final/ThuyetTrinh_Airline_RNN.pptx",
+    "sha256": "d055df9698a9297b000f10dbd4ca321db6faa0b79cd24617680b0888f8856a0e",
+    "slides": 16,
+    "speaker_notes": 16,
+    "native_tables": 6,
+    "native_charts": 6,
+    "embedded_chart_snapshots": 6,
+    "package_layout_import_checks": "passed",
+    "final_file_import_render_visual_qa": "All 16 final slides imported/rendered and inspected individually, including pixel-identical editor/final previews.",
+    "native_powerpoint_app_tested": false
+  },
+  "frozen_final_model_bundle_hashes": "unchanged and verified",
+  "manual_review_human_columns": "all empty; original checksum unchanged",
+  "assistant_review_cases": 85,
+  "demo_rehearsal_cases": 3,
+  "claim_boundary": "Document and local website update only; no new ML training, holdout tuning or human annotation",
+  "website_update": {
+    "branding": "School logo copied exactly from the Word template; school, project, advisor and three members from project-info.json",
+    "analysis_steps": 8,
+    "verification": "25 pytest cases passed; 5 valid streamed requests match predict API; 5 invalid requests return HTTP 400; desktop/mobile layout and reset/recovery checked; no browser console errors",
+    "model_retrained": false
+  },
+  "project_title": "Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN",
+  "scientific_files_preserved": 376,
+  "naming_exception": "The standard framework API and immutable serialized/provenance identifiers retain their original technical names; authored display labels and deliverable filenames use RNN."
+}

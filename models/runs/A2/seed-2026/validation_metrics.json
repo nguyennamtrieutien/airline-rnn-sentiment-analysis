@@ -1,0 +1,51 @@
+{
+  "accuracy": 0.6860335195530727,
+  "macro_f1": 0.6503269473283196,
+  "weighted_f1": 0.6826626193780087,
+  "macro_precision": 0.6543034978721467,
+  "macro_recall": 0.6478096421525348,
+  "loss": 0.8083091974258423,
+  "support": 895,
+  "label_names": [
+    "negative",
+    "positive"
+  ],
+  "confusion_matrix": [
+    [
+      450,
+      127
+    ],
+    [
+      154,
+      164
+    ]
+  ],
+  "classification_report": {
+    "negative": {
+      "precision": 0.7450331125827815,
+      "recall": 0.779896013864818,
+      "f1-score": 0.7620660457239627,
+      "support": 577.0
+    },
+    "positive": {
+      "precision": 0.563573883161512,
+      "recall": 0.5157232704402516,
+      "f1-score": 0.5385878489326765,
+      "support": 318.0
+    },
+    "accuracy": 0.6860335195530727,
+    "macro avg": {
+      "precision": 0.6543034978721467,
+      "recall": 0.6478096421525348,
+      "f1-score": 0.6503269473283196,
+      "support": 895.0
+    },
+    "weighted avg": {
+      "precision": 0.680559330509079,
+      "recall": 0.6860335195530727,
+      "f1-score": 0.6826626193780087,
+      "support": 895.0
+    }
+  },
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    negative     0.7450    0.7799    0.7621       577\n    positive     0.5636    0.5157    0.5386       318\n\n    accuracy                         0.6860       895\n   macro avg     0.6543    0.6478    0.6503       895\nweighted avg     0.6806    0.6860    0.6827       895\n"
+}

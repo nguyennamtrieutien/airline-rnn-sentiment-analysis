@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "cases": 2167,
+  "original_test_cases": 2149,
+  "predicted_class_mismatches": 0,
+  "max_probability_absolute_error": 3.923697554641947e-07,
+  "max_hidden_preview_absolute_error": 3.8743019104003906e-07,
+  "invalid_inputs_rejected": 6,
+  "elapsed_seconds": 2.5406984169999998,
+  "source_model_sha256": "94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9",
+  "scope": "Inference conversion parity only; no fitting, tuning, or new scientific scores."
+}

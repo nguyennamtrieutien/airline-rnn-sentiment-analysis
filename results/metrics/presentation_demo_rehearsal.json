@@ -1,0 +1,77 @@
+{
+  "checked_at_utc": "2026-10-06T02:21:16.960237+00:00",
+  "health": {
+    "status": "ready",
+    "model": "B5-balanced"
+  },
+  "model_sha256": "94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9",
+  "scope": "Three rehearsal requests; no additional model selection or test aggregate evaluation",
+  "cases": [
+    {
+      "name": "illustrative_positive",
+      "row_id": null,
+      "dataset_label": null,
+      "result": {
+        "sentiment": "positive",
+        "probabilities": {
+          "negative": 0.0032217828556895256,
+          "neutral": 0.00916367582976818,
+          "positive": 0.9876145124435425
+        },
+        "confidence": 0.9876145124435425,
+        "clean_text": "thank you for the helpful service",
+        "token_length": 6,
+        "unknown_tokens": 0,
+        "truncated": false,
+        "config_id": "B5-balanced",
+        "seed": 3407,
+        "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+      },
+      "matches_saved_prediction": null
+    },
+    {
+      "name": "heldout_error_high_score",
+      "row_id": 2856,
+      "dataset_label": "negative",
+      "result": {
+        "sentiment": "positive",
+        "probabilities": {
+          "negative": 0.004671076312661171,
+          "neutral": 0.06870584934949875,
+          "positive": 0.9266230463981628
+        },
+        "confidence": 0.9266230463981628,
+        "clean_text": "usermarker thanks for having ground crews that are surprised when flights arrive beingsuckontarmacsucks",
+        "token_length": 13,
+        "unknown_tokens": 1,
+        "truncated": false,
+        "config_id": "B5-balanced",
+        "seed": 3407,
+        "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+      },
+      "matches_saved_prediction": true
+    },
+    {
+      "name": "heldout_error_sarcasm_candidate",
+      "row_id": 9332,
+      "dataset_label": "negative",
+      "result": {
+        "sentiment": "positive",
+        "probabilities": {
+          "negative": 0.15575702488422394,
+          "neutral": 0.10474315285682678,
+          "positive": 0.7394998073577881
+        },
+        "confidence": 0.7394998073577881,
+        "clean_text": "usermarker awesome doors close in 2 minutes flight leaves in 17 minutes and the plane just got here wth",
+        "token_length": 19,
+        "unknown_tokens": 0,
+        "truncated": false,
+        "config_id": "B5-balanced",
+        "seed": 3407,
+        "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+      },
+      "matches_saved_prediction": true
+    }
+  ]
+}

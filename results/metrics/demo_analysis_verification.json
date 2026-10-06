@@ -1,0 +1,2146 @@
+{
+  "checked_at_utc": "2026-10-06T03:22:16.243869+00:00",
+  "status": "passed",
+  "title": "Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN",
+  "members": [
+    {
+      "student_id": "2611307",
+      "name": "Trịnh Nguyễn Anh Hào"
+    },
+    {
+      "student_id": "2611308",
+      "name": "Lê Huy Huân"
+    },
+    {
+      "student_id": "2611323",
+      "name": "Nguyễn Nam Triều Tiên"
+    }
+  ],
+  "logo_matches_word": true,
+  "steps": 8,
+  "invalid_requests_http_400": 5,
+  "health": {
+    "status": "ready",
+    "model": "RNN",
+    "config_id": "B5-balanced",
+    "seed": 3407,
+    "vocabulary_size": 4000,
+    "sequence_length": 40,
+    "embedding_dimension": 128,
+    "hidden_units": 196,
+    "dense_units": 100,
+    "label_names": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "parameters": 595703
+  },
+  "trace_cases": [
+    {
+      "text": "Thank you for the helpful service!",
+      "events": [
+        {
+          "type": "start",
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "steps": 8
+        },
+        {
+          "type": "step_start",
+          "step": 1,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 1,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.0002499982656445354,
+          "data": {
+            "original_text": "Thank you for the helpful service!",
+            "characters": 34,
+            "max_characters": 4000
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 2,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 2,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.03254200055380352,
+          "data": {
+            "clean_text": "thank you for the helpful service",
+            "changed": true,
+            "empty_marker": false,
+            "preprocessing": "P0"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 3,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 3,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.001791999238776043,
+          "data": {
+            "words": [
+              "thank",
+              "you",
+              "for",
+              "the",
+              "helpful",
+              "service"
+            ]
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 4,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 4,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.0065829990489874035,
+          "data": {
+            "tokens": [
+              {
+                "word": "thank",
+                "id": 72,
+                "oov": false
+              },
+              {
+                "word": "you",
+                "id": 9,
+                "oov": false
+              },
+              {
+                "word": "for",
+                "id": 10,
+                "oov": false
+              },
+              {
+                "word": "the",
+                "id": 7,
+                "oov": false
+              },
+              {
+                "word": "helpful",
+                "id": 305,
+                "oov": false
+              },
+              {
+                "word": "service",
+                "id": 43,
+                "oov": false
+              }
+            ],
+            "ids_before_padding": [
+              72,
+              9,
+              10,
+              7,
+              305,
+              43
+            ],
+            "token_length": 6,
+            "sequence_length_before_padding": 6,
+            "unknown_tokens": 0,
+            "oov_rate": 0.0,
+            "vocabulary_size": 4000,
+            "vocabulary_fit_scope": "train_only"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 5,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 5,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.02329199924133718,
+          "data": {
+            "ids": [
+              72,
+              9,
+              10,
+              7,
+              305,
+              43,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mask": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "shape": [
+              1,
+              40
+            ],
+            "sequence_length": 40,
+            "retained_tokens": 6,
+            "padding_tokens": 34,
+            "removed_tokens": 0,
+            "mask_zero": true,
+            "padding": "post",
+            "truncating": "post"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 6,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 6,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 2.1190000006754417,
+          "data": {
+            "embedding_shape": [
+              1,
+              40,
+              128
+            ],
+            "hidden_shape": [
+              1,
+              196
+            ],
+            "dense_shape": [
+              1,
+              100
+            ],
+            "output_shape": [
+              1,
+              3
+            ],
+            "first_token_embedding_preview": [
+              0.09530123323202133,
+              -0.10794930905103683,
+              0.004705945961177349,
+              0.1952267438173294,
+              -0.2063390612602234,
+              0.16935762763023376,
+              -0.122854083776474,
+              0.09380308538675308
+            ],
+            "last_hidden_state_preview": [
+              -0.784406304359436,
+              0.9979504942893982,
+              -0.9890720844268799,
+              -0.9349316954612732,
+              -0.12249214202165604,
+              0.999455451965332,
+              -0.9194517135620117,
+              0.4880085289478302
+            ],
+            "hidden_l2_norm": 11.66108226776123,
+            "parameters": 595703,
+            "hidden_units": 196,
+            "embedding_dimension": 128,
+            "activation": "tanh",
+            "dense_activation": "relu",
+            "dropout_active": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Các vector là giá trị thật trong forward pass; không phải giải thích mức đóng góp của từng từ."
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 7,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 7,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.00291700052912347,
+          "data": {
+            "probabilities": {
+              "negative": 0.003221784485504031,
+              "neutral": 0.00916367955505848,
+              "positive": 0.9876145124435425
+            },
+            "probability_sum": 0.999999976484105
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 8,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e"
+        },
+        {
+          "type": "step_done",
+          "step": 8,
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "elapsed_ms": 0.006166999810375273,
+          "data": {
+            "sentiment": "positive",
+            "confidence": 0.9876145124435425,
+            "rule": "argmax"
+          }
+        },
+        {
+          "type": "result",
+          "request_id": "ca7afc1dc7ed4b06a194e0ab778bef7e",
+          "total_elapsed_ms": 2.346208002563799,
+          "result": {
+            "sentiment": "positive",
+            "probabilities": {
+              "negative": 0.003221784485504031,
+              "neutral": 0.00916367955505848,
+              "positive": 0.9876145124435425
+            },
+            "original_text": "Thank you for the helpful service!",
+            "sequence_length": 40,
+            "confidence": 0.9876145124435425,
+            "clean_text": "thank you for the helpful service",
+            "token_length": 6,
+            "unknown_tokens": 0,
+            "truncated": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+          }
+        }
+      ],
+      "predict_parity": true
+    },
+    {
+      "text": "My flight was delayed again and nobody helped me.",
+      "events": [
+        {
+          "type": "start",
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "steps": 8
+        },
+        {
+          "type": "step_start",
+          "step": 1,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 1,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.0003749992174562067,
+          "data": {
+            "original_text": "My flight was delayed again and nobody helped me.",
+            "characters": 49,
+            "max_characters": 4000
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 2,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 2,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.04120800076634623,
+          "data": {
+            "clean_text": "my flight was delayed again and nobody helped me",
+            "changed": true,
+            "empty_marker": false,
+            "preprocessing": "P0"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 3,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 3,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.0019170001905877143,
+          "data": {
+            "words": [
+              "my",
+              "flight",
+              "was",
+              "delayed",
+              "again",
+              "and",
+              "nobody",
+              "helped",
+              "me"
+            ]
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 4,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 4,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.026166999305132776,
+          "data": {
+            "tokens": [
+              {
+                "word": "my",
+                "id": 16,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "was",
+                "id": 25,
+                "oov": false
+              },
+              {
+                "word": "delayed",
+                "id": 77,
+                "oov": false
+              },
+              {
+                "word": "again",
+                "id": 95,
+                "oov": false
+              },
+              {
+                "word": "and",
+                "id": 15,
+                "oov": false
+              },
+              {
+                "word": "nobody",
+                "id": 1382,
+                "oov": false
+              },
+              {
+                "word": "helped",
+                "id": 819,
+                "oov": false
+              },
+              {
+                "word": "me",
+                "id": 21,
+                "oov": false
+              }
+            ],
+            "ids_before_padding": [
+              16,
+              12,
+              25,
+              77,
+              95,
+              15,
+              1382,
+              819,
+              21
+            ],
+            "token_length": 9,
+            "sequence_length_before_padding": 9,
+            "unknown_tokens": 0,
+            "oov_rate": 0.0,
+            "vocabulary_size": 4000,
+            "vocabulary_fit_scope": "train_only"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 5,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 5,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.02529099947423674,
+          "data": {
+            "ids": [
+              16,
+              12,
+              25,
+              77,
+              95,
+              15,
+              1382,
+              819,
+              21,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mask": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "shape": [
+              1,
+              40
+            ],
+            "sequence_length": 40,
+            "retained_tokens": 9,
+            "padding_tokens": 31,
+            "removed_tokens": 0,
+            "mask_zero": true,
+            "padding": "post",
+            "truncating": "post"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 6,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 6,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 2.325165998627199,
+          "data": {
+            "embedding_shape": [
+              1,
+              40,
+              128
+            ],
+            "hidden_shape": [
+              1,
+              196
+            ],
+            "dense_shape": [
+              1,
+              100
+            ],
+            "output_shape": [
+              1,
+              3
+            ],
+            "first_token_embedding_preview": [
+              -0.07787652313709259,
+              0.01744367927312851,
+              0.0864209309220314,
+              0.011251493357121944,
+              0.1263134926557541,
+              0.02021964266896248,
+              0.030912239104509354,
+              -0.015032995492219925
+            ],
+            "last_hidden_state_preview": [
+              0.9214212894439697,
+              -0.9975348114967346,
+              0.899612545967102,
+              0.9845846891403198,
+              0.864512026309967,
+              -0.8609427213668823,
+              0.34790554642677307,
+              -0.044859617948532104
+            ],
+            "hidden_l2_norm": 11.557241439819336,
+            "parameters": 595703,
+            "hidden_units": 196,
+            "embedding_dimension": 128,
+            "activation": "tanh",
+            "dense_activation": "relu",
+            "dropout_active": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Các vector là giá trị thật trong forward pass; không phải giải thích mức đóng góp của từng từ."
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 7,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 7,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.0025420013116672635,
+          "data": {
+            "probabilities": {
+              "negative": 0.9547746181488037,
+              "neutral": 0.029264621436595917,
+              "positive": 0.015960747376084328
+            },
+            "probability_sum": 0.999999986961484
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 8,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65"
+        },
+        {
+          "type": "step_done",
+          "step": 8,
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "elapsed_ms": 0.0059589983720798045,
+          "data": {
+            "sentiment": "negative",
+            "confidence": 0.9547746181488037,
+            "rule": "argmax"
+          }
+        },
+        {
+          "type": "result",
+          "request_id": "71cd0d063181463cb65c5b37e8c36a65",
+          "total_elapsed_ms": 2.589790998172248,
+          "result": {
+            "sentiment": "negative",
+            "probabilities": {
+              "negative": 0.9547746181488037,
+              "neutral": 0.029264621436595917,
+              "positive": 0.015960747376084328
+            },
+            "original_text": "My flight was delayed again and nobody helped me.",
+            "sequence_length": 40,
+            "confidence": 0.9547746181488037,
+            "clean_text": "my flight was delayed again and nobody helped me",
+            "token_length": 9,
+            "unknown_tokens": 0,
+            "truncated": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+          }
+        }
+      ],
+      "predict_parity": true
+    },
+    {
+      "text": "@Delta I can't find my booking https://example.com",
+      "events": [
+        {
+          "type": "start",
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "steps": 8
+        },
+        {
+          "type": "step_start",
+          "step": 1,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 1,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.00016700141713954508,
+          "data": {
+            "original_text": "@Delta I can't find my booking https://example.com",
+            "characters": 50,
+            "max_characters": 4000
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 2,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 2,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.02558299820520915,
+          "data": {
+            "clean_text": "usermarker i can not find my booking urlmarker",
+            "changed": true,
+            "empty_marker": false,
+            "preprocessing": "P0"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 3,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 3,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.0010840012691915035,
+          "data": {
+            "words": [
+              "usermarker",
+              "i",
+              "can",
+              "not",
+              "find",
+              "my",
+              "booking",
+              "urlmarker"
+            ]
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 4,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 4,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.005249999958323315,
+          "data": {
+            "tokens": [
+              {
+                "word": "usermarker",
+                "id": 2,
+                "oov": false
+              },
+              {
+                "word": "i",
+                "id": 6,
+                "oov": false
+              },
+              {
+                "word": "can",
+                "id": 24,
+                "oov": false
+              },
+              {
+                "word": "not",
+                "id": 14,
+                "oov": false
+              },
+              {
+                "word": "find",
+                "id": 220,
+                "oov": false
+              },
+              {
+                "word": "my",
+                "id": 16,
+                "oov": false
+              },
+              {
+                "word": "booking",
+                "id": 256,
+                "oov": false
+              },
+              {
+                "word": "urlmarker",
+                "id": 3,
+                "oov": false
+              }
+            ],
+            "ids_before_padding": [
+              2,
+              6,
+              24,
+              14,
+              220,
+              16,
+              256,
+              3
+            ],
+            "token_length": 8,
+            "sequence_length_before_padding": 8,
+            "unknown_tokens": 0,
+            "oov_rate": 0.0,
+            "vocabulary_size": 4000,
+            "vocabulary_fit_scope": "train_only"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 5,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 5,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.012000000424450263,
+          "data": {
+            "ids": [
+              2,
+              6,
+              24,
+              14,
+              220,
+              16,
+              256,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mask": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "shape": [
+              1,
+              40
+            ],
+            "sequence_length": 40,
+            "retained_tokens": 8,
+            "padding_tokens": 32,
+            "removed_tokens": 0,
+            "mask_zero": true,
+            "padding": "post",
+            "truncating": "post"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 6,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 6,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 2.081208000163315,
+          "data": {
+            "embedding_shape": [
+              1,
+              40,
+              128
+            ],
+            "hidden_shape": [
+              1,
+              196
+            ],
+            "dense_shape": [
+              1,
+              100
+            ],
+            "output_shape": [
+              1,
+              3
+            ],
+            "first_token_embedding_preview": [
+              -0.01816490665078163,
+              -0.09237250685691833,
+              -0.06581330299377441,
+              0.04950253292918205,
+              0.02991601638495922,
+              0.06150101497769356,
+              0.02516326680779457,
+              -0.06652408093214035
+            ],
+            "last_hidden_state_preview": [
+              0.6084631681442261,
+              -0.8492810726165771,
+              -0.2134307473897934,
+              -0.3848399519920349,
+              0.30630627274513245,
+              -0.9110738635063171,
+              0.7687529921531677,
+              -0.7892398834228516
+            ],
+            "hidden_l2_norm": 10.669341087341309,
+            "parameters": 595703,
+            "hidden_units": 196,
+            "embedding_dimension": 128,
+            "activation": "tanh",
+            "dense_activation": "relu",
+            "dropout_active": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Các vector là giá trị thật trong forward pass; không phải giải thích mức đóng góp của từng từ."
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 7,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 7,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.0023329994291998446,
+          "data": {
+            "probabilities": {
+              "negative": 0.09357567131519318,
+              "neutral": 0.8674393892288208,
+              "positive": 0.03898494690656662
+            },
+            "probability_sum": 1.0000000074505806
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 8,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320"
+        },
+        {
+          "type": "step_done",
+          "step": 8,
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "elapsed_ms": 0.006207999831531197,
+          "data": {
+            "sentiment": "neutral",
+            "confidence": 0.8674393892288208,
+            "rule": "argmax"
+          }
+        },
+        {
+          "type": "result",
+          "request_id": "115dfcb98d5d43c798f93c8db95dc320",
+          "total_elapsed_ms": 2.290417000040179,
+          "result": {
+            "sentiment": "neutral",
+            "probabilities": {
+              "negative": 0.09357567131519318,
+              "neutral": 0.8674393892288208,
+              "positive": 0.03898494690656662
+            },
+            "original_text": "@Delta I can't find my booking https://example.com",
+            "sequence_length": 40,
+            "confidence": 0.8674393892288208,
+            "clean_text": "usermarker i can not find my booking urlmarker",
+            "token_length": 8,
+            "unknown_tokens": 0,
+            "truncated": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+          }
+        }
+      ],
+      "predict_parity": true
+    },
+    {
+      "text": "qzxunseenword",
+      "events": [
+        {
+          "type": "start",
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "steps": 8
+        },
+        {
+          "type": "step_start",
+          "step": 1,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 1,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.0004579997039400041,
+          "data": {
+            "original_text": "qzxunseenword",
+            "characters": 13,
+            "max_characters": 4000
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 2,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 2,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.022958000045036897,
+          "data": {
+            "clean_text": "qzxunseenword",
+            "changed": false,
+            "empty_marker": false,
+            "preprocessing": "P0"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 3,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 3,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.0008749993867240846,
+          "data": {
+            "words": [
+              "qzxunseenword"
+            ]
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 4,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 4,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.014375000318977982,
+          "data": {
+            "tokens": [
+              {
+                "word": "qzxunseenword",
+                "id": 1,
+                "oov": true
+              }
+            ],
+            "ids_before_padding": [
+              1
+            ],
+            "token_length": 1,
+            "sequence_length_before_padding": 1,
+            "unknown_tokens": 1,
+            "oov_rate": 1.0,
+            "vocabulary_size": 4000,
+            "vocabulary_fit_scope": "train_only"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 5,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 5,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.015958001313265413,
+          "data": {
+            "ids": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "mask": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "shape": [
+              1,
+              40
+            ],
+            "sequence_length": 40,
+            "retained_tokens": 1,
+            "padding_tokens": 39,
+            "removed_tokens": 0,
+            "mask_zero": true,
+            "padding": "post",
+            "truncating": "post"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 6,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 6,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 1.8461660001776181,
+          "data": {
+            "embedding_shape": [
+              1,
+              40,
+              128
+            ],
+            "hidden_shape": [
+              1,
+              196
+            ],
+            "dense_shape": [
+              1,
+              100
+            ],
+            "output_shape": [
+              1,
+              3
+            ],
+            "first_token_embedding_preview": [
+              -0.07256118953227997,
+              0.029078543186187744,
+              0.08578450232744217,
+              -0.06567864865064621,
+              -0.05857900530099869,
+              0.01070135086774826,
+              0.03726980462670326,
+              0.036390695720911026
+            ],
+            "last_hidden_state_preview": [
+              -0.047529399394989014,
+              -0.03546746447682381,
+              -0.08999646455049515,
+              -0.1276652067899704,
+              -0.04773503541946411,
+              -0.02670135907828808,
+              0.11199993640184402,
+              0.04858055338263512
+            ],
+            "hidden_l2_norm": 1.13662850856781,
+            "parameters": 595703,
+            "hidden_units": 196,
+            "embedding_dimension": 128,
+            "activation": "tanh",
+            "dense_activation": "relu",
+            "dropout_active": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Các vector là giá trị thật trong forward pass; không phải giải thích mức đóng góp của từng từ."
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 7,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 7,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.002249998942716047,
+          "data": {
+            "probabilities": {
+              "negative": 0.2223585695028305,
+              "neutral": 0.4337518513202667,
+              "positive": 0.34388962388038635
+            },
+            "probability_sum": 1.0000000447034836
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 8,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d"
+        },
+        {
+          "type": "step_done",
+          "step": 8,
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "elapsed_ms": 0.003917000867659226,
+          "data": {
+            "sentiment": "neutral",
+            "confidence": 0.4337518513202667,
+            "rule": "argmax"
+          }
+        },
+        {
+          "type": "result",
+          "request_id": "1bb7e8613e724ca5b35a25d538d47a4d",
+          "total_elapsed_ms": 2.030916999501642,
+          "result": {
+            "sentiment": "neutral",
+            "probabilities": {
+              "negative": 0.2223585695028305,
+              "neutral": 0.4337518513202667,
+              "positive": 0.34388962388038635
+            },
+            "original_text": "qzxunseenword",
+            "sequence_length": 40,
+            "confidence": 0.4337518513202667,
+            "clean_text": "qzxunseenword",
+            "token_length": 1,
+            "unknown_tokens": 1,
+            "truncated": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+          }
+        }
+      ],
+      "predict_parity": true
+    },
+    {
+      "text": "flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight ",
+      "events": [
+        {
+          "type": "start",
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "steps": 8
+        },
+        {
+          "type": "step_start",
+          "step": 1,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 1,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.00029199873097240925,
+          "data": {
+            "original_text": "flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight ",
+            "characters": 385,
+            "max_characters": 4000
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 2,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 2,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.08475000140606426,
+          "data": {
+            "clean_text": "flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight",
+            "changed": true,
+            "empty_marker": false,
+            "preprocessing": "P0"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 3,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 3,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.0026669986255001277,
+          "data": {
+            "words": [
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight",
+              "flight"
+            ]
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 4,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 4,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.012792002962669358,
+          "data": {
+            "tokens": [
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              },
+              {
+                "word": "flight",
+                "id": 12,
+                "oov": false
+              }
+            ],
+            "ids_before_padding": [
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12
+            ],
+            "token_length": 55,
+            "sequence_length_before_padding": 55,
+            "unknown_tokens": 0,
+            "oov_rate": 0.0,
+            "vocabulary_size": 4000,
+            "vocabulary_fit_scope": "train_only"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 5,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 5,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.009958999726222828,
+          "data": {
+            "ids": [
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12
+            ],
+            "mask": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "shape": [
+              1,
+              40
+            ],
+            "sequence_length": 40,
+            "retained_tokens": 40,
+            "padding_tokens": 0,
+            "removed_tokens": 15,
+            "mask_zero": true,
+            "padding": "post",
+            "truncating": "post"
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 6,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 6,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 1.8889589991886169,
+          "data": {
+            "embedding_shape": [
+              1,
+              40,
+              128
+            ],
+            "hidden_shape": [
+              1,
+              196
+            ],
+            "dense_shape": [
+              1,
+              100
+            ],
+            "output_shape": [
+              1,
+              3
+            ],
+            "first_token_embedding_preview": [
+              0.045220907777547836,
+              0.04736316576600075,
+              -0.0388324037194252,
+              -0.03248079866170883,
+              -0.006881130859255791,
+              0.013673977926373482,
+              -0.007399755995720625,
+              0.018661484122276306
+            ],
+            "last_hidden_state_preview": [
+              -0.9969328045845032,
+              0.935802161693573,
+              0.6808453798294067,
+              -0.005224962718784809,
+              -0.13302573561668396,
+              0.8602398633956909,
+              0.23726022243499756,
+              -0.9365379214286804
+            ],
+            "hidden_l2_norm": 11.203634262084961,
+            "parameters": 595703,
+            "hidden_units": 196,
+            "embedding_dimension": 128,
+            "activation": "tanh",
+            "dense_activation": "relu",
+            "dropout_active": false,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Các vector là giá trị thật trong forward pass; không phải giải thích mức đóng góp của từng từ."
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 7,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 7,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.0021660016500391066,
+          "data": {
+            "probabilities": {
+              "negative": 0.022936275228857994,
+              "neutral": 0.09137485176324844,
+              "positive": 0.885688841342926
+            },
+            "probability_sum": 0.9999999683350325
+          }
+        },
+        {
+          "type": "step_start",
+          "step": 8,
+          "request_id": "3c839d62e2184ce582c5500351b38665"
+        },
+        {
+          "type": "step_done",
+          "step": 8,
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "elapsed_ms": 0.003625002136686817,
+          "data": {
+            "sentiment": "positive",
+            "confidence": 0.885688841342926,
+            "rule": "argmax"
+          }
+        },
+        {
+          "type": "result",
+          "request_id": "3c839d62e2184ce582c5500351b38665",
+          "total_elapsed_ms": 2.1393330025603063,
+          "result": {
+            "sentiment": "positive",
+            "probabilities": {
+              "negative": 0.022936275228857994,
+              "neutral": 0.09137485176324844,
+              "positive": 0.885688841342926
+            },
+            "original_text": "flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight ",
+            "sequence_length": 40,
+            "confidence": 0.885688841342926,
+            "clean_text": "flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight flight",
+            "token_length": 55,
+            "unknown_tokens": 0,
+            "truncated": true,
+            "config_id": "B5-balanced",
+            "seed": 3407,
+            "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+          }
+        }
+      ],
+      "predict_parity": true
+    }
+  ],
+  "browser_checks": {
+    "initial_pending": true,
+    "positive_and_negative_runs": true,
+    "blank_input_clears_old_result": true,
+    "valid_recovery": true,
+    "desktop_width": 1000,
+    "mobile_width": 390,
+    "no_horizontal_overflow": true,
+    "console_errors": 0
+  },
+  "browser_screenshot": "results/figures/F23_demo.png",
+  "browser_screenshot_sha256": "b80442350bc2d64ce7adf044de844156ad71bfb2bbe5d75c42806803b3c10fd9"
+}

@@ -1,0 +1,28 @@
+{
+  "recorded_at_utc": "2026-10-05T12:50:50.225100+00:00",
+  "python": "3.12.14",
+  "os": "macOS-27.2-arm64-arm-64bit",
+  "processor": "arm",
+  "machine": "arm64",
+  "cpu_physical_cores": 10,
+  "cpu_logical_cores": 10,
+  "ram_bytes": 17179869184,
+  "gpu_devices": [],
+  "tensorflow_build": {
+    "is_cuda_build": false,
+    "is_rocm_build": false,
+    "is_tensorrt_build": false
+  },
+  "versions": {
+    "tensorflow": "2.20.0",
+    "keras": "3.11.3",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.6"
+  },
+  "precision": "float32",
+  "deterministic_ops": true,
+  "intra_threads": 2,
+  "inter_threads": 1
+}

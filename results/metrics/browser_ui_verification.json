@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "input": "Thank you for the helpful service!",
+      "sentiment": "Positive",
+      "score": "98.8%",
+      "completed": 8,
+      "error": null
+    },
+    {
+      "input": "My flight was delayed again and nobody helped me.",
+      "sentiment": "Negative",
+      "score": "95.5%",
+      "completed": 8,
+      "error": null
+    },
+    {
+      "input": "What time does flight 123 depart?",
+      "sentiment": "Negative",
+      "score": "94.0%",
+      "completed": 8,
+      "error": null
+    }
+  ],
+  "empty": {
+    "outputHidden": true,
+    "progress": 0,
+    "error": "Hãy nhập một câu hoặc tweet tiếng Anh."
+  },
+  "viewports": [
+    {
+      "width": 1280,
+      "overflow": false,
+      "logoLoaded": true
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "logoLoaded": true
+    }
+  ],
+  "pageErrors": []
+}

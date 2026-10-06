@@ -1,0 +1,25 @@
+{
+  "verified_at_utc": "2026-10-06T06:35:36.283868+00:00",
+  "status": "passed",
+  "scientific_runs": 22,
+  "clean_benchmarks_have_no_duplicate_group_overlap": true,
+  "test_predictions_timestamped_after_selection": true,
+  "source_tokenizer_parity_rows": 6541,
+  "test_reports_recomputed": [
+    "A1_seed-42_test.json",
+    "A2_seed-2026_test.json",
+    "A2_seed-3407_test.json",
+    "A2_seed-42_test.json",
+    "B5-balanced_seed-2026_test.json",
+    "B5-balanced_seed-3407_test.json",
+    "B5-balanced_seed-42_test.json",
+    "C0_seed-2026_test.json",
+    "C0_seed-3407_test.json",
+    "C0_seed-42_test.json"
+  ],
+  "inference_matches_saved_test_predictions": 12,
+  "only_rnn": true,
+  "executed_notebook_code_cells": 12,
+  "figures": 23,
+  "human_sarcasm_annotation": "pending; never claimed completed"
+}

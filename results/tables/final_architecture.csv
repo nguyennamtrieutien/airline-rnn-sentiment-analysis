@@ -1,0 +1,8 @@
+layer,type,input_shape,output_shape,parameters
+word_embedding,Embedding,"(None, 40)","(None, 40, 128)",512000
+embedding_dropout,SpatialDropout1D,"(None, 40, 128)","(None, 40, 128)",0
+rnn,RNN,"(None, 40, 128)","(None, 196)",63700
+state_dropout,Dropout,"(None, 196)","(None, 196)",0
+dense_features,Dense,"(None, 196)","(None, 100)",19700
+dense_dropout,Dropout,"(None, 100)","(None, 100)",0
+sentiment_probabilities,Dense,"(None, 100)","(None, 3)",303

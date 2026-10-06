@@ -1,0 +1,23 @@
+{
+  "id": "B5-balanced",
+  "benchmark": "three_class",
+  "vocabulary_size": 4000,
+  "sequence_length": 40,
+  "hidden_units": 196,
+  "embedding_dimension": 128,
+  "spatial_dropout": 0.5,
+  "input_dropout": 0.3,
+  "recurrent_dropout": 0.3,
+  "output_dropout": 0.2,
+  "dense_units": 100,
+  "dense_dropout": 0.4,
+  "learning_rate": 0.001,
+  "batch_size": 32,
+  "max_epochs": 20,
+  "patience": 5,
+  "min_delta": 0.001,
+  "class_weighting": "balanced",
+  "gradient_clipnorm": 1.0,
+  "early_stopping": true,
+  "mask_zero": true
+}

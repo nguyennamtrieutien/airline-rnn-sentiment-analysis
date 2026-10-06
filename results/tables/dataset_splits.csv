@@ -1,0 +1,10 @@
+benchmark,split,negative,positive,total,neutral
+binary_source,test,1254,709,1963,0.0
+binary_source,train,2361,1301,3662,0.0
+binary_source,validation,563,353,916,0.0
+binary_clean,test,1257,709,1966,0.0
+binary_clean,train,2321,1323,3644,0.0
+binary_clean,validation,577,318,895,0.0
+three_class,test,1368,333,2149,448.0
+three_class,train,6404,1544,10043,2095.0
+three_class,validation,1368,335,2161,458.0

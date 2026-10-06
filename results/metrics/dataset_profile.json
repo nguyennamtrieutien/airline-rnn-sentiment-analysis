@@ -1,0 +1,103 @@
+{
+  "source": "https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment",
+  "sha256": "ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e",
+  "raw_rows": 14640,
+  "raw_columns": 15,
+  "class_counts": {
+    "negative": 9178,
+    "neutral": 3099,
+    "positive": 2363
+  },
+  "airline_counts": {
+    "United": 3822,
+    "US Airways": 2913,
+    "American": 2759,
+    "Southwest": 2420,
+    "Delta": 2222,
+    "Virgin America": 504
+  },
+  "missing_counts": {
+    "tweet_id": 0,
+    "airline_sentiment": 0,
+    "airline_sentiment_confidence": 0,
+    "negativereason": 5462,
+    "negativereason_confidence": 4118,
+    "airline": 0,
+    "airline_sentiment_gold": 14600,
+    "name": 0,
+    "negativereason_gold": 14608,
+    "retweet_count": 0,
+    "text": 0,
+    "tweet_coord": 13621,
+    "tweet_created": 0,
+    "tweet_location": 4733,
+    "user_timezone": 4820
+  },
+  "duplicate_tweet_ids": 155,
+  "duplicate_raw_texts": 213,
+  "benchmarks": {
+    "binary_source": {
+      "rows": 6541,
+      "groups": 6541,
+      "counts": {
+        "test": {
+          "negative": 1254,
+          "positive": 709
+        },
+        "train": {
+          "negative": 2361,
+          "positive": 1301
+        },
+        "validation": {
+          "negative": 563,
+          "positive": 353
+        }
+      },
+      "manifest_sha256": "78f8dfca0a293078855173f6c12d3eb0ab0cf1238b58815b36a3a2ba4d80d758",
+      "legacy_contamination": true
+    },
+    "binary_clean": {
+      "rows": 6505,
+      "groups": 6304,
+      "counts": {
+        "test": {
+          "negative": 1257,
+          "positive": 709
+        },
+        "train": {
+          "negative": 2321,
+          "positive": 1323
+        },
+        "validation": {
+          "negative": 577,
+          "positive": 318
+        }
+      },
+      "manifest_sha256": "3cd79cea1e7bc8e67e2fbe3440de31d0d897c3199b78382e71a71aeabe8243a9",
+      "legacy_contamination": false
+    },
+    "three_class": {
+      "rows": 14353,
+      "groups": 14153,
+      "counts": {
+        "test": {
+          "negative": 1368,
+          "neutral": 448,
+          "positive": 333
+        },
+        "train": {
+          "negative": 6404,
+          "neutral": 2095,
+          "positive": 1544
+        },
+        "validation": {
+          "negative": 1368,
+          "neutral": 458,
+          "positive": 335
+        }
+      },
+      "manifest_sha256": "1a520dcff55d7b0ee6263e189be88f7bac47a418c082b28f0b9f00f93bf332b1",
+      "legacy_contamination": false
+    }
+  }
+}

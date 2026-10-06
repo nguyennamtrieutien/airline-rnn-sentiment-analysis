@@ -1,0 +1,8 @@
+{
+  "n_cases": 85,
+  "sampling": "confusion-pair balanced, correct examples, lowest top2 margin; not prevalence sample",
+  "scope": "qualitative hypotheses, no attribution or label correction",
+  "human_columns_modified": false,
+  "source_sha256": "1a2be51cff51953ad846003c3fd102a2e17bbdb6ced38fb6a9d2589592f21050",
+  "output": "results/predictions/assistant_error_review.csv"
+}

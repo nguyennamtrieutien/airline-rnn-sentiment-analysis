@@ -1,0 +1,58 @@
+{
+  "accuracy": 0.8380030565461029,
+  "macro_f1": 0.8248992987377279,
+  "weighted_f1": 0.838198270815129,
+  "macro_precision": 0.8241329017150558,
+  "macro_recall": 0.8256990887270748,
+  "loss": 0.5208250284194946,
+  "support": 1963,
+  "label_names": [
+    "negative",
+    "positive"
+  ],
+  "confusion_matrix": [
+    [
+      1091,
+      163
+    ],
+    [
+      155,
+      554
+    ]
+  ],
+  "classification_report": {
+    "negative": {
+      "precision": 0.8756019261637239,
+      "recall": 0.8700159489633174,
+      "f1-score": 0.8728,
+      "support": 1254.0
+    },
+    "positive": {
+      "precision": 0.7726638772663877,
+      "recall": 0.7813822284908322,
+      "f1-score": 0.7769985974754559,
+      "support": 709.0
+    },
+    "accuracy": 0.8380030565461029,
+    "macro avg": {
+      "precision": 0.8241329017150558,
+      "recall": 0.8256990887270748,
+      "f1-score": 0.8248992987377279,
+      "support": 1963.0
+    },
+    "weighted avg": {
+      "precision": 0.8384225697356997,
+      "recall": 0.8380030565461029,
+      "f1-score": 0.838198270815129,
+      "support": 1963.0
+    }
+  },
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    negative     0.8756    0.8700    0.8728      1254\n    positive     0.7727    0.7814    0.7770       709\n\n    accuracy                         0.8380      1963\n   macro avg     0.8241    0.8257    0.8249      1963\nweighted avg     0.8384    0.8380    0.8382      1963\n",
+  "evaluation_fingerprint": "552bd5d5b54880559c48575df48fb760338644db7039d32abaf1df9f77952857",
+  "predictions_sha256": "fdbe16ffe781e17b3f8ae7df3c3fe67a09697219cf91036d9ce8ee1ffda4bdac",
+  "config_id": "A1",
+  "seed": 42,
+  "benchmark": "binary_source",
+  "selection_signature": "5ba634c6f5c3d6308ad6bba34580d16ef565a9fff64fb91b55d605b13af6f3b0",
+  "evaluated_at_utc": "2026-10-05T13:05:43.057596+00:00"
+}

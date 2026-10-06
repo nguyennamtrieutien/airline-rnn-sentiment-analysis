@@ -1,0 +1,15 @@
+{
+  "config_id": "B5-balanced",
+  "seed": 3407,
+  "selection_signature": "5ba634c6f5c3d6308ad6bba34580d16ef565a9fff64fb91b55d605b13af6f3b0",
+  "trained_model_sha256": "94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9",
+  "tokenizer_sha256": "a25cfee0cb53001674deebfca6ea4fa1aaeb0f2a4a46dc5f3d3b92624e1f135e",
+  "softmax_is_calibrated": false,
+  "asset_hashes": {
+    "model.keras": "94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9",
+    "tokenizer.json": "a25cfee0cb53001674deebfca6ea4fa1aaeb0f2a4a46dc5f3d3b92624e1f135e",
+    "label_map.json": "eacc914a5dfa15bb0f653091223bf1b549c1ef1bdbe5841eb601575a3a0d8dbf",
+    "config.json": "7c45bcf9b90ab5e8919efa58559c257f06b79cc078618d03bb9012b5cd25d30e",
+    "representation.json": "fcb099c07b661b8093c5b24450d4c42e441267dee9e1f1c5865e9ec314643ddd"
+  }
+}

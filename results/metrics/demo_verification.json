@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-06T01:18:42.520290+00:00",
+  "valid_predictions": [
+    {
+      "text": "Thank you for the helpful service!",
+      "sentiment": "positive",
+      "probabilities": {
+        "negative": 0.0032217828556895256,
+        "neutral": 0.00916367582976818,
+        "positive": 0.9876145124435425
+      },
+      "confidence": 0.9876145124435425,
+      "clean_text": "thank you for the helpful service",
+      "token_length": 6,
+      "unknown_tokens": 0,
+      "truncated": false,
+      "config_id": "B5-balanced",
+      "seed": 3407,
+      "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+    },
+    {
+      "text": "My flight was delayed again and nobody helped me.",
+      "sentiment": "negative",
+      "probabilities": {
+        "negative": 0.9547746181488037,
+        "neutral": 0.029264621436595917,
+        "positive": 0.015960747376084328
+      },
+      "confidence": 0.9547746181488037,
+      "clean_text": "my flight was delayed again and nobody helped me",
+      "token_length": 9,
+      "unknown_tokens": 0,
+      "truncated": false,
+      "config_id": "B5-balanced",
+      "seed": 3407,
+      "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+    },
+    {
+      "text": "What time does flight 123 depart?",
+      "sentiment": "negative",
+      "probabilities": {
+        "negative": 0.9401373863220215,
+        "neutral": 0.04220021143555641,
+        "positive": 0.017662378028035164
+      },
+      "confidence": 0.9401373863220215,
+      "clean_text": "what time does flight 123 depart",
+      "token_length": 6,
+      "unknown_tokens": 1,
+      "truncated": false,
+      "config_id": "B5-balanced",
+      "seed": 3407,
+      "note": "Softmax chưa được calibration; không diễn giải score như độ tin cậy đã kiểm chứng."
+    }
+  ],
+  "empty_and_malformed_requests_return_400": true
+}

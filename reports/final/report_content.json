@@ -1,0 +1,2076 @@
+[
+  {
+    "type": "paragraph",
+    "text": "MỤC LỤC"
+  },
+  {
+    "type": "paragraph",
+    "text": "MỤC LỤC (tiếp theo)"
+  },
+  {
+    "type": "paragraph",
+    "text": "DANH MỤC HÌNH"
+  },
+  {
+    "type": "paragraph",
+    "text": "DANH MỤC BẢNG"
+  },
+  {
+    "type": "paragraph",
+    "text": "DANH MỤC TỪ VIẾT TẮT"
+  },
+  {
+    "type": "paragraph",
+    "text": "Các thuật ngữ sử dụng trong báo cáo"
+  },
+  {
+    "type": "table",
+    "title": "Các thuật ngữ sử dụng trong báo cáo",
+    "headers": [
+      "Viết tắt",
+      "Diễn giải"
+    ],
+    "rows": [
+      [
+        "RNN",
+        "Recurrent Neural Network"
+      ],
+      [
+        "LSTM",
+        "Long Short-Term Memory; chỉ thuộc notebook nguồn"
+      ],
+      [
+        "NLP",
+        "Natural Language Processing"
+      ],
+      [
+        "OOV / PAD",
+        "Out of Vocabulary / Padding"
+      ],
+      [
+        "CE",
+        "Cross-Entropy"
+      ],
+      [
+        "Val",
+        "Validation, tập xác thực"
+      ],
+      [
+        "SD",
+        "Độ lệch chuẩn giữa training seeds"
+      ],
+      [
+        "API",
+        "Application Programming Interface"
+      ],
+      [
+        "CPU / GPU",
+        "Central / Graphics Processing Unit"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "MỞ ĐẦU"
+  },
+  {
+    "type": "paragraph",
+    "text": "Giới thiệu đề tài"
+  },
+  {
+    "type": "paragraph",
+    "text": "Phản hồi trên mạng xã hội chứa nhiều thông tin về trải nghiệm sử dụng dịch vụ. Với ngành hàng không, một tweet có thể là lời cảm ơn, câu hỏi về lịch bay hoặc phàn nàn về hành lý và chậm chuyến. Phân tích cảm xúc tự động giúp chuyển văn bản thành nhãn có thể thống kê, nhưng ngôn ngữ ngắn, viết tắt và thiếu ngữ cảnh khiến bài toán khó hơn việc dò các từ tích cực hay tiêu cực [1]."
+  },
+  {
+    "type": "paragraph",
+    "text": "Đề tài nghiên cứu mạng nơ-ron hồi quy thuần RNN cho phân loại cảm xúc tweet hàng không. Mô hình xử lý chuỗi token theo thứ tự, học embedding cùng bộ phân loại và trả về phân bố xác suất của ba lớp negative, neutral, positive. Giá trị của thực nghiệm nằm ở quy trình có thể chạy lại và bằng chứng phân tích theo lớp, bên cạnh kết quả Accuracy tổng thể."
+  },
+  {
+    "type": "paragraph",
+    "text": "Mục tiêu nghiên cứu"
+  },
+  {
+    "type": "paragraph",
+    "text": "Mục tiêu A là kiểm tra notebook Kaggle “Airline Sentiment Analysis (90% Accuracy) using RNN” [2] và tái hiện pipeline nguồn trong giới hạn mô hình RNN. Audit cho thấy notebook thực tế dùng LSTM và đã bỏ neutral. Vì vậy A1 được gọi là baseline chuyển thể từ nguồn, không phải tái lập nguyên trạng công bố 90%. A2 là nhánh binary sạch để quan sát độ ổn định khi áp dụng protocol tách dữ liệu và chọn checkpoint."
+  },
+  {
+    "type": "paragraph",
+    "text": "Mục tiêu B là xây dựng benchmark ba lớp sạch, giữ các yếu tố cố định và khảo sát riêng độ dài chuỗi, số hidden units, class weighting. Mô hình cuối được chọn bằng validation Macro-F1 trước khi mở test. Báo cáo cung cấp bảng cấu hình, lịch sử huấn luyện, confusion matrix, phân tích lỗi và demo dùng đúng checkpoint đã chọn."
+  },
+  {
+    "type": "paragraph",
+    "text": "Đối tượng và phạm vi nghiên cứu"
+  },
+  {
+    "type": "paragraph",
+    "text": "Dữ liệu là Tweets.csv từ Twitter US Airline Sentiment [3], gồm 14.640 dòng gốc. Thực nghiệm chính giới hạn ở văn bản tiếng Anh và ba nhãn của dataset; các trường airline/tweet_id chỉ phục vụ audit, thống kê hoặc nhóm dữ liệu, không là feature đưa vào mô hình. Tất cả 22 lần huấn luyện của dự án sử dụng RNN. LSTM, GRU, BERT và Transformer không được huấn luyện trong ma trận này."
+  },
+  {
+    "type": "paragraph",
+    "text": "Các kết quả trình bày là số liệu đã đo trên CPU máy cá nhân. Độ lệch chuẩn qua ba training seeds phản ánh biến thiên tối ưu trên cùng một split; không được hiểu thành khoảng tin cậy trên mọi tập dữ liệu. Phân tích định tính do trợ lý đọc mẫu và đề xuất giả thuyết; đánh giá độc lập của thành viên nhóm vẫn là bước cần bổ sung nếu muốn kết luận chắc hơn."
+  },
+  {
+    "type": "paragraph",
+    "text": "CHƯƠNG 1. TỔNG QUAN VÀ CƠ SỞ LÝ THUYẾT"
+  },
+  {
+    "type": "paragraph",
+    "text": "1.1. Sentiment Analysis và dữ liệu tuần tự"
+  },
+  {
+    "type": "paragraph",
+    "text": "Sentiment Analysis trong phạm vi đề tài là phân loại mức câu/tweet: mỗi văn bản nhận đúng một nhãn trong ba lớp. Negative phản ánh trải nghiệm hoặc thái độ tiêu cực, positive phản ánh đánh giá tích cực, neutral chủ yếu truyền thông tin hay yêu cầu dịch vụ. Một câu vừa cảm ơn vừa nêu sự cố vẫn chỉ có một ground truth, nên ranh giới nhãn có thể không rõ khi thiếu chuỗi hội thoại [1]."
+  },
+  {
+    "type": "paragraph",
+    "text": "Thứ tự từ ảnh hưởng ý nghĩa. “Good service” khác “not good service”; “did not have to wait” lại có thể mô tả trải nghiệm tốt. RNN khai thác thứ tự bằng cách cập nhật trạng thái ẩn khi đọc từng token. Tweet có độ dài khác nhau cần được ánh xạ về tensor cùng kích thước để ghép batch, trong khi thông tin từ phần đệm cần được tách khỏi văn bản thật."
+  },
+  {
+    "type": "paragraph",
+    "text": "1.2. Tiền xử lý và biểu diễn chuỗi"
+  },
+  {
+    "type": "paragraph",
+    "text": "Tiền xử lý là ánh xạ xác định từ raw text sang clean text trước tokenization. Các phép lower-case, chuẩn hóa Unicode và thay URL/mention giúp giảm biến thể hình thức. Tuy nhiên việc bỏ dấu câu, emoji hoặc danh tính hãng có thể làm mất tín hiệu cảm xúc. Do đó quy tắc được ghi rõ, lưu song song raw/clean và áp dụng thống nhất khi train, đánh giá, inference; tác động hiệu năng chỉ được kết luận sau một đối chứng riêng."
+  },
+  {
+    "type": "paragraph",
+    "text": "Tokenizer của pipeline chính tách từ theo khoảng trắng sau cleaning. Vocabulary là ánh xạ token sang chỉ số, được học chỉ từ train. Từ chưa gặp ở validation/test dùng OOV; PAD dùng để bổ sung chuỗi ngắn. Với T=40, padding và truncation ở cuối. Masking làm lớp hồi quy bỏ qua PAD. Cấu hình T=20 có thể cắt nội dung cuối, trong khi tăng T vượt độ dài thực chỉ tăng số vị trí đệm."
+  },
+  {
+    "type": "paragraph",
+    "text": "1.3. Word embedding"
+  },
+  {
+    "type": "paragraph",
+    "text": "Embedding là bảng vector có kích thước V × D. Mỗi token ID tra ra một vector D chiều, sau đó được cập nhật cùng mô hình bằng gradient. Đề tài dùng V=4.000 và D=128, không nạp embedding pretrained. ID 0 dành cho PAD, ID 1 dành cho OOV, các ID 2–4 dành cho marker. Keras hỗ trợ mask_zero để truyền mặt nạ của PAD tới lớp hồi quy [4]."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "equation",
+    "number": "1.1"
+  },
+  {
+    "type": "paragraph",
+    "text": "Ở đây w là token ID tại thời điểm t, E là ma trận embedding và x là vector đầu vào của bước hồi quy. Các ID chỉ là mã tra cứu, không mang quan hệ thứ tự số học. Mô hình học cách biểu diễn hữu ích cho nhiệm vụ trong phạm vi tập train, nên vector không tự bảo đảm hiểu được sarcasm hoặc các từ ngoài vocabulary."
+  },
+  {
+    "type": "paragraph",
+    "text": "1.4. Mạng nơ-ron hồi quy thuần RNN"
+  },
+  {
+    "type": "paragraph",
+    "text": "RNN duy trì một trạng thái ẩn H chiều. Tại mỗi bước, lớp kết hợp vector hiện tại với trạng thái trước qua các ma trận học được rồi áp dụng tanh. Cùng một bộ trọng số được dùng xuyên suốt chuỗi. Đề tài lấy trạng thái cuối của chuỗi đã masking để đại diện tweet, sau đó chuyển qua Dense và softmax [5]."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "equation",
+    "number": "1.2"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "equation",
+    "number": "1.3"
+  },
+  {
+    "type": "paragraph",
+    "text": "Với D=128 và H=196, lớp hồi quy có 196 × (128 + 196 + 1) = 63.700 tham số. Khác với kiến trúc có cổng như LSTM/GRU, RNN chỉ có phép cập nhật trạng thái cơ bản. Việc tập trung một kiến trúc giúp các đối chứng phản ánh ảnh hưởng của biểu diễn, dung lượng và trọng số lớp trong cùng loại mô hình."
+  },
+  {
+    "type": "paragraph",
+    "text": "1.5. Huấn luyện, gradient và regularization"
+  },
+  {
+    "type": "paragraph",
+    "text": "Backpropagation Through Time lan truyền gradient qua các bước của chuỗi. Khi nhân lặp các đạo hàm, gradient có thể nhỏ dần hoặc tăng lớn. Pascanu, Mikolov và Bengio phân tích hai vấn đề này và đề xuất clipping chuẩn gradient cho trường hợp exploding gradient [6]. Trong pipeline chính, global clipnorm=1,0 giới hạn chuẩn của toàn bộ gradient; thao tác này không bảo đảm giải quyết vanishing gradient."
+  },
+  {
+    "type": "paragraph",
+    "text": "Adam điều chỉnh cập nhật theo các ước lượng moment của gradient [7]. Learning rate trong dự án được khai báo tường minh là 0,001. Các lớp dropout giảm sự phụ thuộc vào một tập feature khi train [8]. SpatialDropout1D áp dụng trên embedding, dropout nội bộ của RNN tác động lên đầu vào/trạng thái hồi quy, còn dropout sau RNN và Dense tác động lên vector feature. Inference tắt dropout nên train fit Accuracy và validation Accuracy không cùng điều kiện đo."
+  },
+  {
+    "type": "paragraph",
+    "text": "Cross-entropy phạt xác suất thấp của nhãn đúng. Với class weighting, mỗi mẫu train được nhân trọng số theo lớp để tăng ảnh hưởng lớp ít dữ liệu. Loss có trọng số của B5 không thể so trực tiếp về trị số với loss không trọng số của C0; quality được so bằng metric không trọng số trên validation chung."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "equation",
+    "number": "1.4"
+  },
+  {
+    "type": "paragraph",
+    "text": "1.6. Các metric đánh giá"
+  },
+  {
+    "type": "paragraph",
+    "text": "Confusion matrix có hàng là nhãn thật và cột là nhãn dự đoán. Với từng lớp c, TP là số dự đoán đúng lớp đó, FP là số mẫu lớp khác dự đoán thành c, FN là số mẫu c bị dự đoán sang lớp khác. Precision và Recall giúp phân biệt độ chính xác của dự đoán với mức thu hồi nhãn thật [9]."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "equation",
+    "number": "1.5"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "equation",
+    "number": "1.6"
+  },
+  {
+    "type": "paragraph",
+    "text": "Macro-F1 là trung bình F1 của tất cả lớp với trọng số bằng nhau. Weighted-F1 lấy trọng số support của từng lớp. Accuracy là tỷ lệ nhãn dự đoán đúng trên toàn bộ N mẫu. Phép tính F1 phải dùng prediction trên cả tập dữ liệu; trung bình F1 của các minibatch không tương đương F1 toàn tập [9]. Khi mẫu số bằng 0, dự án dùng zero_division=0 và vẫn tính đủ lớp."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 1.1. Vai trò các metric trong thực nghiệm"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 1.1. Vai trò các metric trong thực nghiệm",
+    "headers": [
+      "Metric",
+      "Vai trò"
+    ],
+    "rows": [
+      [
+        "Accuracy",
+        "Tỷ lệ tweet nhận đúng nhãn, cần đặt cạnh class prior"
+      ],
+      [
+        "Precision / Recall / F1",
+        "Đánh giá từng sentiment và trade-off FP/FN"
+      ],
+      [
+        "Macro-F1",
+        "Metric chính để checkpoint và chọn configuration"
+      ],
+      [
+        "Weighted-F1",
+        "Chất lượng tổng hợp có xét support"
+      ],
+      [
+        "Confusion matrix",
+        "Nhận diện cặp lớp thường nhầm"
+      ],
+      [
+        "Classification report",
+        "Lưu đầy đủ per-class, macro/weighted average và support"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Dữ liệu gốc có negative chiếm khoảng 62,69%. Một mô hình thiên về lớp này có thể đạt Accuracy khá mà bỏ lỡ neutral/positive. Majority baseline ở benchmark chính đạt Accuracy 63,66% nhưng Macro-F1 chỉ 0,2593. Vì vậy báo cáo luôn phân biệt hiệu quả tổng thể với khả năng nhận diện đồng đều ba lớp."
+  },
+  {
+    "type": "paragraph",
+    "text": "CHƯƠNG 2. PHƯƠNG PHÁP VÀ GIẢI PHÁP"
+  },
+  {
+    "type": "paragraph",
+    "text": "2.1. Pipeline tổng thể và nguyên tắc thực nghiệm"
+  },
+  {
+    "type": "paragraph",
+    "text": "Pipeline gồm kiểm tra nguồn, kiểm tra chất lượng dữ liệu, đóng băng split theo nhóm trùng, fit vocabulary trên train, biểu diễn chuỗi, huấn luyện từng configuration, chọn bằng validation và đánh giá test cuối. Tất cả run lưu cấu hình, seed, environment, checkpoint, history, thời gian và fingerprint của dữ liệu/mã nguồn. Các bước phân tích sau test không thay đổi lựa chọn mô hình."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 2.1. Pipeline dữ liệu, huấn luyện và đánh giá với test holdout"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F08_pipeline.png",
+    "title": "Hình 2.1. Pipeline dữ liệu, huấn luyện và đánh giá với test holdout"
+  },
+  {
+    "type": "paragraph",
+    "text": "2.2. Audit notebook Kaggle và định nghĩa baseline"
+  },
+  {
+    "type": "paragraph",
+    "text": "Notebook nguồn [2], phiên bản scriptVersionId=120745701, dùng text làm input và airline_sentiment làm nhãn. Sau khi loại 3.099 neutral và 5.000 negative đầu theo thứ tự nguồn, còn 6.541 tweet: 4.178 negative, 2.363 positive. Việc chọn mẫu theo thứ tự làm thay đổi phân bố hãng/lớp, không phải downsample ngẫu nhiên. Các cột khác dùng cho EDA, không đưa vào mạng."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 2.1. Các thành phần xác định được từ notebook nguồn"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 2.1. Các thành phần xác định được từ notebook nguồn",
+    "headers": [
+      "Thành phần",
+      "Giá trị/nhận xét đã audit"
+    ],
+    "rows": [
+      [
+        "Làm sạch",
+        "lstrip tập ký tự hãng; rstrip @; lower; regex [^a-zA-z0-9\\s]"
+      ],
+      [
+        "Tokenizer / vocabulary",
+        "Keras Tokenizer, num_words=4.000; fit trên toàn 6.541 mẫu; không OOV"
+      ],
+      [
+        "Chuỗi",
+        "Độ dài tự lấy max=31; pre-padding và pre-truncation"
+      ],
+      [
+        "Label",
+        "negative=0, positive=1; sparse integer labels"
+      ],
+      [
+        "Split",
+        "70/30 stratified, random_state=1; validation_split=0,2 từ phần train"
+      ],
+      [
+        "Số mẫu train / val / test",
+        "3.662 / 916 / 1.963"
+      ],
+      [
+        "Kiến trúc thực tế",
+        "Embedding(4.000,128), SpatialDropout(0,5), LSTM(196)"
+      ],
+      [
+        "Các lớp sau hồi quy",
+        "Dropout(0,2), Dense(100,ReLU), Dropout(0,4), Dense(2,softmax)"
+      ],
+      [
+        "Dropout nội bộ LSTM",
+        "input=0,3; recurrent=0,3; activation không khai báo tường minh"
+      ],
+      [
+        "Train",
+        "Sparse CE; Adam; batch=32; 20 epoch; metric Accuracy"
+      ],
+      [
+        "LR và runtime lịch sử",
+        "Không khai báo LR/version đầy đủ; chưa xác định giá trị default lịch sử"
+      ],
+      [
+        "Checkpoint / Early Stopping",
+        "Không có lựa chọn checkpoint hoặc dừng sớm"
+      ],
+      [
+        "Kết quả lưu trong notebook",
+        "Test Accuracy=90,32094%; test loss=0,6523001"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Output nguồn còn ghi train Accuracy epoch cuối 99,62%, validation Accuracy epoch cuối 90,61% và validation Accuracy tốt nhất 92,58% ở epoch 11. Đây là output lịch sử đã kiểm tra, không phải số nhóm đo lại. Test Accuracy được tính trên test binary đã lọc; tiêu đề có thể gây hiểu nhầm nếu coi đó là RNN hoặc ba lớp trên toàn dataset."
+  },
+  {
+    "type": "paragraph",
+    "text": "Nguồn fit tokenizer trước split nên vocabulary biết phân bố token của test dù không dùng nhãn test trong fit. Audit nhánh A1 còn tìm thấy 68 tweet_id và 85 clean text trùng giữa các phần dữ liệu. Đây là rủi ro leakage; số overlap không xác định được Accuracy đã bị tăng bao nhiêu. Hàm lstrip dùng tập ký tự, không gỡ đúng tiền tố hãng như một chuỗi, vì vậy được giữ trong A1 để ghi nhận hành vi nguồn."
+  },
+  {
+    "type": "paragraph",
+    "text": "A1 thay riêng lớp hồi quy bằng RNN(196), giữ source filtering/cleaning/tokenization/split và checkpoint epoch cuối. Adam LR=0,001 là quyết định triển khai tường minh, không khẳng định trùng default nguồn. A2 dùng binary dataset sạch và train-only tokenizer, vẫn giữ source cleaner, pre-padding, không masking/clipping; bổ sung checkpoint validation và Early Stopping. A1/A2 khác nhiều thành phần protocol nên không được dùng như một ablation một yếu tố để lượng hóa leakage."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 2.2. Việc lọc của nguồn biến bài toán ba lớp thành binary"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F02_source_filtering.png",
+    "title": "Hình 2.2. Việc lọc của nguồn biến bài toán ba lớp thành binary"
+  },
+  {
+    "type": "paragraph",
+    "text": "2.3. Dataset và kiểm tra chất lượng"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 2.2. Đặc điểm dataset sử dụng"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 2.2. Đặc điểm dataset sử dụng",
+    "headers": [
+      "Thuộc tính",
+      "Giá trị"
+    ],
+    "rows": [
+      [
+        "Nguồn",
+        "crowdflower/twitter-airline-sentiment; Tweets.csv"
+      ],
+      [
+        "Dữ liệu gốc",
+        "14.640 dòng, 15 cột"
+      ],
+      [
+        "Nhãn gốc",
+        "negative 9.178; neutral 3.099; positive 2.363"
+      ],
+      [
+        "Input / output",
+        "Một tweet text / ba xác suất và nhãn argmax"
+      ],
+      [
+        "Cột vào mô hình",
+        "text; label từ airline_sentiment"
+      ],
+      [
+        "Cột audit/EDA",
+        "tweet_id, airline và raw/clean text"
+      ],
+      [
+        "Loại khỏi benchmark chính",
+        "36 exact duplicates; 251 dòng thuộc nhóm xung đột nhãn"
+      ],
+      [
+        "Dữ liệu sạch chính",
+        "14.353 dòng"
+      ],
+      [
+        "Lưu provenance",
+        "Raw CSV, SHA-256, manifest, exclusion log và split indices"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Các bản sao hoàn toàn được loại trước. Các nhóm có cùng tweet_id, văn bản canonical hoặc clean text được nối bắc cầu; nhóm nhãn xung đột được cách ly, không tự suy đoán nhãn đúng. Nhóm còn lại đi trọn vào một split. Cách làm này kiểm soát duplicate leakage nhưng không loại được mọi quan hệ ngữ nghĩa gần nhau hay hội thoại liên tiếp. Log exclusions lưu row_id để truy vết 287 dòng loại."
+  },
+  {
+    "type": "paragraph",
+    "text": "2.4. Preprocessing chính P0"
+  },
+  {
+    "type": "paragraph",
+    "text": "P0 chuẩn hóa Unicode NFKC, giải mã HTML entities, chuẩn hóa apostrophe cong và chuyển lowercase. URL và mention được thay bằng urlmarker/usermarker. Các contraction phổ biến được mở rộng để giữ not, chẳng hạn can’t thành can not. Regex giữ chữ cái Latin, chữ số và khoảng trắng; dấu câu và emoji bị loại. Hashtag giữ nội dung từ khi ký tự # bị bỏ. Không bỏ stopwords, không stemming hoặc lemmatization. Văn bản rỗng sau cleaning được thay bằng emptymarker."
+  },
+  {
+    "type": "paragraph",
+    "text": "P0 được định nghĩa trước chọn mô hình và áp dụng y hệt khi inference. Reserved IDs gồm PAD=0, OOV=1, usermarker=2, urlmarker=3, emptymarker=4. Train-only vocabulary có cap 4.000 tính cả reserved IDs; thứ tự token là xác định. Encoding nhãn chính cố định negative=0, neutral=1, positive=2. Tokenizer và label_map được lưu để demo không fit lại."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 2.3. Ví dụ raw text và clean text của P0"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F07_preprocessing.png",
+    "title": "Hình 2.3. Ví dụ raw text và clean text của P0"
+  },
+  {
+    "type": "paragraph",
+    "text": "Các thay đổi có hai mặt: mở rộng phủ định giữ thông tin not, nhưng gộp mention làm mất mục tiêu đánh giá trong câu so sánh hai hãng, bỏ ?? có thể mất sắc thái nghi vấn và bỏ emoji có thể mất thái độ. Các ví dụ sau test chỉ hỗ trợ chỉ ra thông tin đã mất, không chứng minh một quy tắc cleaning là nguyên nhân của chênh lệch metric. Nếu khảo sát P0 khác, cần ma trận mới và holdout chưa dùng."
+  },
+  {
+    "type": "paragraph",
+    "text": "2.5. Kiến trúc RNN và tham số"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 2.4. Kiến trúc RNN ba lớp dùng trong C0 và B5"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F09_architecture.png",
+    "title": "Hình 2.4. Kiến trúc RNN ba lớp dùng trong C0 và B5"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 2.3. Kiến trúc RNN cuối; B là batch size"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 2.3. Kiến trúc RNN cuối; B là batch size",
+    "headers": [
+      "Layer",
+      "Input",
+      "Output",
+      "Parameters"
+    ],
+    "rows": [
+      [
+        "Embedding",
+        "(B, 40)",
+        "(B, 40, 128)",
+        "512.000"
+      ],
+      [
+        "SpatialDropout1D",
+        "(B, 40, 128)",
+        "(B, 40, 128)",
+        "0"
+      ],
+      [
+        "RNN",
+        "(B, 40, 128)",
+        "(B, 196)",
+        "63.700"
+      ],
+      [
+        "Dropout",
+        "(B, 196)",
+        "(B, 196)",
+        "0"
+      ],
+      [
+        "Dense",
+        "(B, 196)",
+        "(B, 100)",
+        "19.700"
+      ],
+      [
+        "Dropout",
+        "(B, 100)",
+        "(B, 100)",
+        "0"
+      ],
+      [
+        "Dense",
+        "(B, 100)",
+        "(B, 3)",
+        "303"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Embedding có 512.000 tham số, RNN có 63.700, Dense feature có 19.700 và Dense output có 303, tổng 595.703. Lớp RNN dùng tanh và return_sequences=False. Dense feature dùng ReLU, output dùng softmax. Spatial dropout=0,5; dropout input/recurrent=0,3; dropout sau RNN=0,2; dropout sau Dense=0,4. Mask PAD được bật trong các run ba lớp."
+  },
+  {
+    "type": "paragraph",
+    "text": "2.6. Training pipeline và lựa chọn mô hình"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 2.4. Cấu hình cố định của benchmark ba lớp"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 2.4. Cấu hình cố định của benchmark ba lớp",
+    "headers": [
+      "Hyperparameter",
+      "Giá trị"
+    ],
+    "rows": [
+      [
+        "Training seeds",
+        "42, 2026, 3407; split seed=42"
+      ],
+      [
+        "Vocabulary / embedding",
+        "4.000 / 128; fit vocabulary chỉ trên train"
+      ],
+      [
+        "Chuỗi / padding / mask",
+        "T=40; post/post; mask_zero=True"
+      ],
+      [
+        "Hidden / Dense",
+        "196 tanh / 100 ReLU"
+      ],
+      [
+        "Optimizer / LR",
+        "Adam / 0,001"
+      ],
+      [
+        "Loss / batch size",
+        "Sparse categorical cross-entropy / 32"
+      ],
+      [
+        "Global gradient clipnorm",
+        "1,0"
+      ],
+      [
+        "Epoch tối đa / patience",
+        "20 / 5; min_delta=0,001"
+      ],
+      [
+        "Checkpoint",
+        "Validation Macro-F1 lớn nhất; nếu bằng thì val loss thấp hơn"
+      ],
+      [
+        "Class weights C0 / B5",
+        "Không / N_train ÷ (3 × số mẫu lớp trên train)"
+      ],
+      [
+        "Test gate",
+        "Chỉ mở sau frozen validation selection"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Python, NumPy và TensorFlow được đặt seed; TensorFlow op determinism được bật. Mỗi epoch lưu loss/Accuracy trong fit cùng train_eval Macro-F1 và validation Macro-F1 ở chế độ inference trên toàn tập. Early Stopping dùng mức cải thiện 0,001 và patience=5; checkpoint vẫn theo cực đại validation Macro-F1 chính xác, vì vậy epoch checkpoint và mốc tham chiếu Early Stopping có thể khác nhau."
+  },
+  {
+    "type": "paragraph",
+    "text": "Configuration thắng được chọn theo mean validation Macro-F1 qua ba seeds. Với ứng viên cách top dưới 0,005, rule ưu tiên ít tham số, rồi median training wall time, rồi thứ tự matrix. B5-balanced thắng và seed 3407 là run có validation Macro-F1 trung vị, được chọn làm demo trước test. Model cuối sao chép checkpoint của run này, không refit train+validation để tránh tạo run mới chưa có validation."
+  },
+  {
+    "type": "paragraph",
+    "text": "CHƯƠNG 3. THỰC NGHIỆM VÀ ĐÁNH GIÁ"
+  },
+  {
+    "type": "paragraph",
+    "text": "3.1. Môi trường và quy mô chạy"
+  },
+  {
+    "type": "paragraph",
+    "text": "Toàn bộ ma trận chạy trên máy cá nhân macOS arm64, CPU 10 physical/logical cores, RAM 16 GiB. TensorFlow không phát hiện GPU được dùng. Runtime là Python 3.12.14, TensorFlow 2.20.0, Keras 3.11.3, NumPy 2.2.6, pandas 2.3.3, scikit-learn 1.7.2. Dtype=float32; TensorFlow inter/intra threads cấu hình 1/2. Thông tin environment được lưu trong mỗi run."
+  },
+  {
+    "type": "paragraph",
+    "text": "Tổng 22 run gồm A1 một seed, A2 ba seeds và sáu configurations ba lớp mỗi loại ba seeds. Tổng training wall time khoảng 19,91 phút, có tính bước tính metric cuối epoch. Đây là chi phí đo trên máy và môi trường trên; không phải thời gian GPU hay tổng thời gian chuẩn bị báo cáo. Kaggle/Colab là lựa chọn chuyển môi trường, chưa được chạy kiểm chứng cho gói hiện tại."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.2. EDA, imbalance và split sạch"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.1. Phân bố sentiment trên 14.640 tweet gốc"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F01_raw_sentiment.png",
+    "title": "Hình 3.1. Phân bố sentiment trên 14.640 tweet gốc"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.2. Phân bố tweet theo hãng ở dữ liệu gốc"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F03_airlines.png",
+    "title": "Hình 3.2. Phân bố tweet theo hãng ở dữ liệu gốc"
+  },
+  {
+    "type": "paragraph",
+    "text": "Phân bố lớp lệch mạnh về negative. Phân bố theo airline cung cấp bối cảnh nguồn dữ liệu và giúp nhận diện ảnh hưởng của việc bỏ các negative đầu theo thứ tự. Airline không được sử dụng làm feature. Báo cáo không diễn giải chất lượng dịch vụ hiện tại của hãng từ mẫu tweet này."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.1. Phân bố benchmark ba lớp sau kiểm tra dữ liệu"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.1. Phân bố benchmark ba lớp sau kiểm tra dữ liệu",
+    "headers": [
+      "Split",
+      "Negative",
+      "Neutral",
+      "Positive",
+      "Tổng"
+    ],
+    "rows": [
+      [
+        "Train",
+        6404,
+        2095,
+        1544,
+        10043
+      ],
+      [
+        "Validation",
+        1368,
+        458,
+        335,
+        2161
+      ],
+      [
+        "Test",
+        1368,
+        448,
+        333,
+        2149
+      ],
+      [
+        "Tổng",
+        9140,
+        3001,
+        2212,
+        14353
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Tỷ lệ gần 70/15/15 được thực hiện có stratification theo nhóm và lớp, seed split=42. Group isolation dẫn đến số mẫu không đúng phép làm tròn chia từng dòng nhưng gần giữ class prior. Không có nhóm trùng chéo split sạch. Test gồm 2.149 mẫu cố định được dùng cho C0 và B5, nên hai kết quả này có thể đối chiếu trong cùng benchmark."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.3. Phân bố độ dài tweet P0 trên train"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F05_train_lengths.png",
+    "title": "Hình 3.3. Phân bố độ dài tweet P0 trên train"
+  },
+  {
+    "type": "paragraph",
+    "text": "Độ dài token trên train có median=20, P90=26, P95=28, P99=30, max=34. Giá trị T=40 bao phủ mọi tweet train của biểu diễn hiện tại; T=60 chủ yếu bổ sung PAD. Ngưỡng phân tích lỗi theo độ dài lấy từ quartile train (13,20,24), không tính từ test để lựa chọn hyperparameter."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.3. Baseline A1 và A2"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.2. Baseline binary, các tập đánh giá khác nhau"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.2. Baseline binary, các tập đánh giá khác nhau",
+    "headers": [
+      "Run",
+      "N test",
+      "Val Macro-F1",
+      "Test Accuracy",
+      "Test Macro-F1"
+    ],
+    "rows": [
+      [
+        "A1",
+        "1963",
+        "0,8376",
+        "83,80%",
+        "0,8249"
+      ],
+      [
+        "A2",
+        "1966",
+        "0,6421 ± 0,2171",
+        "74,08%",
+        "0,6531 ± 0,2183"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "A1 đạt Test Accuracy 83,80% và Macro-F1 0,8249 trên test binary 1.963 mẫu, dùng epoch cuối như nguồn. Số này thấp hơn output nguồn 90,32% nhưng kiến trúc đã đổi LSTM thành RNN và runtime/LR lịch sử chưa xác định; không thể coi chênh lệch là lỗi tái lập hay bằng chứng RNN luôn kém hơn. A1 còn giữ các rủi ro leakage để ghi nhận pipeline nguồn."
+  },
+  {
+    "type": "paragraph",
+    "text": "A2 đạt mean Test Accuracy 74,08% ± 11,12 điểm phần trăm, Macro-F1 0,6531 ± 0,2183. Seed 42 dừng ở epoch 6 với checkpoint epoch 1, F1 positive chỉ khoảng 0,0593; các seed khác tốt hơn rõ rệt. Biến thiên lớn là kết quả cần báo cáo, không loại seed yếu để làm số đẹp. A2 thay cả dữ liệu, tokenizer và cách chọn epoch, vì vậy chưa tách được nguyên nhân bất ổn hay định lượng tác động cleaning/leakage."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.4. Experiment Matrix và các yếu tố khảo sát"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.3. Ma trận thực nghiệm đã chạy"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.3. Ma trận thực nghiệm đã chạy",
+    "headers": [
+      "ID",
+      "Benchmark / thay đổi",
+      "Số seeds",
+      "Mục đích"
+    ],
+    "rows": [
+      [
+        "A1",
+        "Binary nguồn, thay LSTM bằng RNN",
+        "1",
+        "Baseline chuyển thể"
+      ],
+      [
+        "A2",
+        "Binary sạch, train-only vocab + checkpoint",
+        "3",
+        "Baseline sạch"
+      ],
+      [
+        "C0",
+        "Ba lớp sạch, T40 H196, không class weights",
+        "3",
+        "Mốc đối chứng chính"
+      ],
+      [
+        "B1-20",
+        "Chỉ T=20",
+        "3",
+        "Khảo sát truncation/chi phí"
+      ],
+      [
+        "B1-60",
+        "Chỉ T=60",
+        "3",
+        "Kiểm tra thêm PAD"
+      ],
+      [
+        "B3-64",
+        "Chỉ H=64",
+        "3",
+        "Giảm dung lượng RNN"
+      ],
+      [
+        "B3-128",
+        "Chỉ H=128",
+        "3",
+        "Dung lượng trung gian"
+      ],
+      [
+        "B5-balanced",
+        "Chỉ class_weight=balanced",
+        "3",
+        "Nhận diện lớp thiểu số"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Trong các run B, split, seeds, cleaner P0, vocabulary 4.000, embedding 128, dropout, LR, batch size, checkpoint rule và epoch budget giữ nguyên so với C0. Câu hỏi về sequence length là mức cắt/ngữ cảnh có thay đổi quality hoặc cost không; câu hỏi hidden units là dung lượng hồi quy có đem lại lợi ích không; câu hỏi class weighting là Macro-F1 và F1 neutral/positive có cải thiện khi trọng số lớp thay đổi không. Metric lựa chọn vẫn là validation Macro-F1, còn thời gian và tham số ghi như thước đo chi phí."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.4. So sánh validation qua ba seeds; thời gian median (giây)"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.4. So sánh validation qua ba seeds; thời gian median (giây)",
+    "headers": [
+      "Config",
+      "Val Accuracy",
+      "Val Macro-F1 ± SD",
+      "Parameters",
+      "Time (s)"
+    ],
+    "rows": [
+      [
+        "C0",
+        "75,12%",
+        "0,6623 ± 0,0017",
+        "595.703",
+        "76,49"
+      ],
+      [
+        "B1-20",
+        "75,69%",
+        "0,6722 ± 0,0159",
+        "595.703",
+        "39,61"
+      ],
+      [
+        "B1-60",
+        "75,12%",
+        "0,6623 ± 0,0017",
+        "595.703",
+        "108,86"
+      ],
+      [
+        "B3-64",
+        "75,88%",
+        "0,6625 ± 0,0073",
+        "531.155",
+        "30,32"
+      ],
+      [
+        "B3-128",
+        "76,21%",
+        "0,6724 ± 0,0079",
+        "558.099",
+        "50,47"
+      ],
+      [
+        "B5-balanced",
+        "75,21%",
+        "0,6926 ± 0,0115",
+        "595.703",
+        "75,46"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.4. Validation Macro-F1 của sáu configurations ba lớp"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F20_configuration_comparison.png",
+    "title": "Hình 3.4. Validation Macro-F1 của sáu configurations ba lớp"
+  },
+  {
+    "type": "paragraph",
+    "text": "3.5. Ảnh hưởng của sequence length"
+  },
+  {
+    "type": "paragraph",
+    "text": "T=20 có mean validation Macro-F1 0,6722, cao hơn T=40 (0,6623) trong mẫu này, đồng thời median training time giảm từ 76,49 xuống 39,61 giây. Tuy nhiên SD ở T=20 là 0,0159, lớn hơn mốc 0,0017. Cắt chuỗi có thể bỏ phần đánh giá cuối tweet, nên chất lượng trung bình cao hơn trong ba run chưa cho phép kết luận ngữ cảnh ngắn luôn có lợi."
+  },
+  {
+    "type": "paragraph",
+    "text": "T=60 và T=40 có metric validation giống nhau ở từng seed. Điều này phù hợp với việc tweet sau P0 ngắn hơn 40 token và mask bỏ PAD: T=60 không thêm nội dung văn bản. Median thời gian tăng lên 108,86 giây, tức thêm khoảng 42% so với C0. Vì vậy đối chứng này chủ yếu chứng minh chi phí phần đệm, không phải khả năng học phụ thuộc xa của RNN."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.6. Ảnh hưởng của hidden units và class weighting"
+  },
+  {
+    "type": "paragraph",
+    "text": "H=64 giảm tham số từ 595.703 xuống 531.155 và median wall time còn 30,32 giây; mean validation Macro-F1 0,6625 gần C0. H=128 đạt 0,6724 với 558.099 tham số và 50,47 giây. Embedding chiếm phần lớn tham số nên giảm H không làm tổng tham số giảm theo cùng tỷ lệ với thời gian. Chưa có bằng chứng H lớn nhất là tốt nhất trong miền đã khảo sát."
+  },
+  {
+    "type": "paragraph",
+    "text": "B5-balanced có mean validation Macro-F1 0,6926 ± 0,0115, cao nhất ma trận ba lớp, trong khi mean validation Accuracy chỉ 75,21%. Class weights được tính từ 10.043 mẫu train; negative≈0,5227, neutral≈1,5979, positive≈2,1682. Các lớp ít dữ liệu đóng góp nhiều hơn vào train loss. B5 được chọn bằng validation, không dựa vào test."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.5. Quan hệ giữa validation Macro-F1 và chi phí huấn luyện"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F21_quality_cost.png",
+    "title": "Hình 3.5. Quan hệ giữa validation Macro-F1 và chi phí huấn luyện"
+  },
+  {
+    "type": "paragraph",
+    "text": "3.7. Kết quả test của mô hình cuối"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.5. Test ba lớp; mean ± SD qua ba seeds trên cùng split"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.5. Test ba lớp; mean ± SD qua ba seeds trên cùng split",
+    "headers": [
+      "Model",
+      "Accuracy",
+      "Macro-F1",
+      "Weighted-F1",
+      "N"
+    ],
+    "rows": [
+      [
+        "C0",
+        "74,75% ± 0,63 đpt",
+        "0,6515 ± 0,0017",
+        "0,7423",
+        "2149"
+      ],
+      [
+        "B5-balanced",
+        "75,18% ± 1,34 đpt",
+        "0,6914 ± 0,0158",
+        "0,7568",
+        "2149"
+      ],
+      [
+        "Majority",
+        "63,66%",
+        "0,2593",
+        "0,4952",
+        2149
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "B5-balanced đạt mean Test Accuracy 75,18% ± 1,34 điểm phần trăm; Macro-F1 0,6914 ± 0,0158, Weighted-F1 trung bình 0,7568. C0 đạt Accuracy 74,75% và Macro-F1 0,6515. Mức chênh Macro-F1 trung bình khoảng 0,0399 được quan sát trên cùng holdout. Ba seeds chưa đủ để khẳng định ý nghĩa thống kê rộng hay hiệu quả trên hãng/ngôn ngữ mới."
+  },
+  {
+    "type": "paragraph",
+    "text": "Checkpoint seed 3407 dùng trong demo có Test Accuracy 75,38% và Macro-F1 0,6869. Những hình history, confusion matrix, ví dụ và bảng per-class dưới đây đều thuộc checkpoint này, không phải trung bình hoặc ensemble của ba seeds. Seed demo có validation Macro-F1 0,6935, checkpoint ở epoch 16 trong 20 epoch đã chạy."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.6. Training Loss và Validation Loss của B5 seed 3407"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F11_loss.png",
+    "title": "Hình 3.6. Training Loss và Validation Loss của B5 seed 3407"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.7. Training Accuracy và Validation Accuracy của B5 seed 3407"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F12_accuracy.png",
+    "title": "Hình 3.7. Training Accuracy và Validation Accuracy của B5 seed 3407"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.8. Train-eval và validation Macro-F1, B5 seed 3407"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F13_macro_f1.png",
+    "title": "Hình 3.8. Train-eval và validation Macro-F1, B5 seed 3407"
+  },
+  {
+    "type": "paragraph",
+    "text": "History giúp nhận diện hội tụ và vị trí checkpoint tốt nhất. Train fit dùng dropout và class weights còn validation dùng inference và loss không class weights, nên không suy diễn overfitting chỉ từ việc hai đường loss nằm trên/dưới nhau. Train-eval Macro-F1 tính inference toàn train cho phép so với validation trong điều kiện đo gần nhau hơn. Không lấy metric epoch cuối thay metric checkpoint nếu checkpoint đã chọn khác epoch."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.8. Confusion matrix và kết quả theo lớp"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.9. Confusion matrix số lượng, B5 seed 3407; hàng là nhãn thật"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F14_confusion_count.png",
+    "title": "Hình 3.9. Confusion matrix số lượng, B5 seed 3407; hàng là nhãn thật"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.10. Confusion matrix chuẩn hóa theo hàng, B5 seed 3407"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F15_confusion_normalized.png",
+    "title": "Hình 3.10. Confusion matrix chuẩn hóa theo hàng, B5 seed 3407"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.6. Classification report theo lớp, B5 seed 3407"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.6. Classification report theo lớp, B5 seed 3407",
+    "headers": [
+      "Sentiment",
+      "Precision",
+      "Recall",
+      "F1-score",
+      "Support"
+    ],
+    "rows": [
+      [
+        "negative",
+        "0,8534",
+        "0,8428",
+        "0,8481",
+        "1368"
+      ],
+      [
+        "neutral",
+        "0,5050",
+        "0,5670",
+        "0,5342",
+        "448"
+      ],
+      [
+        "positive",
+        "0,7220",
+        "0,6396",
+        "0,6783",
+        "333"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Negative có F1 cao nhất 0,8481 với 1.153/1.368 mẫu đúng. Positive nhầm thành neutral 79/333 mẫu (23,72%), thành negative 41/333. Neutral nhầm negative 157/448 (35,04%), positive 37/448. Neutral có F1 thấp nhất 0,5342. Các nhận xét này được rút trực tiếp từ confusion matrix của checkpoint seed 3407; không khẳng định negative luôn dễ nhất trên mọi split."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.11. F1 theo sentiment của checkpoint demo"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F16_per_class_f1.png",
+    "title": "Hình 3.11. F1 theo sentiment của checkpoint demo"
+  },
+  {
+    "type": "paragraph",
+    "text": "So C0 với B5 ở mean ba seeds, F1 negative giảm từ 0,8596 xuống 0,8438; neutral tăng từ 0,4754 lên 0,5410; positive tăng từ 0,6196 lên 0,6895. Class weighting tạo trade-off giữa lớp đa số và hai lớp ít dữ liệu. Accuracy ít thay đổi trong khi Macro-F1 tăng cho thấy giá trị của việc đánh giá cân bằng theo lớp."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.9. Phân tích lỗi theo độ dài, phủ định và OOV"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.7. Error slices theo độ dài, B5 seed 3407"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.7. Error slices theo độ dài, B5 seed 3407",
+    "headers": [
+      "Số token",
+      "N",
+      "Accuracy",
+      "Macro-F1",
+      "Neg / Neu / Pos"
+    ],
+    "rows": [
+      [
+        "≤13",
+        577,
+        "0,6880",
+        "0,6909",
+        "220 / 213 / 144"
+      ],
+      [
+        "14–20",
+        607,
+        "0,7496",
+        "0,6896",
+        "386 / 122 / 99"
+      ],
+      [
+        "21–24",
+        499,
+        "0,7796",
+        "0,6004",
+        "378 / 59 / 62"
+      ],
+      [
+        ">24",
+        466,
+        "0,8133",
+        "0,5248",
+        "384 / 54 / 28"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Accuracy tăng ở nhóm dài nhưng Macro-F1 giảm. Nhóm >24 token gồm 384 negative và chỉ 28 positive, trong khi nhóm ≤13 phân bố đều hơn. Vì vậy sự khác biệt có thể chịu ảnh hưởng class mix, không chứng minh tweet dài giúp RNN hiểu tốt hơn. Không có tweet test bị truncation ở T=40, nên lỗi checkpoint cuối không thể quy cho việc cắt cuối chuỗi này."
+  },
+  {
+    "type": "paragraph",
+    "text": "Flag phủ định định nghĩa bằng not/no/never trong clean text. Nhóm có flag gồm 701 mẫu, Accuracy≈0,8103 và Macro-F1≈0,5200, với 591 negative; nhóm không flag có 1.448 mẫu, Accuracy≈0,7265 và Macro-F1≈0,7013. Khác biệt phân bố lớp làm so sánh này không phải đối chứng nhân quả về negation. Nhóm có OOV (1.219 mẫu) có Macro-F1≈0,6716 so với ≈0,7028 ở 930 mẫu không OOV; chưa kiểm soát độ dài/chủ đề/class mix."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.10. Phân tích định tính các dự đoán"
+  },
+  {
+    "type": "paragraph",
+    "text": "85 case được chọn gồm tối đa 10 lỗi mỗi confusion pair, 5 case đúng mỗi lớp và 10 case có top-2 margin thấp. Trợ lý đã đọc raw/clean và lưu candidate explanation trong assistant_error_review.csv. Đây là mẫu có chủ đích để khám phá loại lỗi, không phải mẫu ngẫu nhiên dùng ước tính tỷ lệ sarcasm toàn dataset. Hai cột reviewer của nhóm trong manual_error_review.csv vẫn để trống; chưa có agreement của hai người."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.8. Ví dụ lỗi có bằng chứng; ID là row_id của dữ liệu gốc"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.8. Ví dụ lỗi có bằng chứng; ID là row_id của dữ liệu gốc",
+    "headers": [
+      "ID / thật → dự đoán",
+      "Trích đoạn raw text",
+      "Nhận xét có giới hạn"
+    ],
+    "rows": [
+      [
+        "9332 / neg → pos",
+        "awesome... Doors close in 2 minutes ... WTH?",
+        "Ứng viên mỉa mai: lời khen đối lập sự cố; cần review người"
+      ],
+      [
+        "1537 / neg → pos",
+        "good try but @SouthwestAir got her here safer and sooner",
+        "Hai hãng/mục tiêu; mention đều thành usermarker"
+      ],
+      [
+        "14299 / neg → pos",
+        "thankfully ... Really not impressed ... :(",
+        "Mixed sentiment; not còn nguyên sau cleaning"
+      ],
+      [
+        "8960 / neu → pos",
+        "@JetBlue really caring??",
+        "Cleaning bỏ ??; chưa có ablation để đo tác động"
+      ],
+      [
+        "12077 / neu → neg",
+        "u r horrible ... hungupNOHELP",
+        "Nhãn neutral cần kiểm tra; không tự sửa nhãn"
+      ],
+      [
+        "4647 / neu → pos",
+        "continues to prove to be the best airlines 💪",
+        "Ứng viên nhãn chưa phù hợp khi đọc riêng"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Một số tweet khó chứa lời cảm ơn xen phàn nàn, thành ngữ, so sánh đối tượng hoặc thông tin hội thoại bị thiếu. Tweet 9332 là ví dụ cụ thể cho khả năng sarcasm, nhưng chưa chứng minh mô hình hỏng mọi sarcasm. Tweet 14299 giữ not nhưng vẫn sai, còn tweet 10391 (“not ... truthful”) đúng: giữ phủ định là cần thiết về thông tin song không bảo đảm dự đoán đúng. Không sử dụng saliency/attribution trong lần chạy này, nên nhận xét về từ mà mô hình “bám vào” chỉ là giả thuyết."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.12. Các tweet dự đoán đúng của checkpoint cuối"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F17_correct_examples.png",
+    "title": "Hình 3.12. Các tweet dự đoán đúng của checkpoint cuối"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.13. Các tweet dự đoán sai của checkpoint cuối"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F18_error_examples.png",
+    "title": "Hình 3.13. Các tweet dự đoán sai của checkpoint cuối"
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 3.14. Các tweet có top-2 margin thấp"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F19_low_confidence.png",
+    "title": "Hình 3.14. Các tweet có top-2 margin thấp"
+  },
+  {
+    "type": "paragraph",
+    "text": "Softmax confidence cao vẫn có thể sai: tweet 2856 được dự đoán positive với xác suất khoảng 92,66% dù ground truth negative. Ngược lại margin thấp không đồng nghĩa sai nhãn. Phân bố xác suất chưa được calibration; chưa báo ECE hay tỷ lệ từ chối. Vì vậy demo hiển thị xác suất do mô hình tính, không gọi đó là xác suất đúng đã được kiểm chứng [10]."
+  },
+  {
+    "type": "paragraph",
+    "text": "3.11. So sánh với notebook gốc và hạn chế"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 3.9. Điều kiện so sánh nguồn và thực nghiệm chính"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 3.9. Điều kiện so sánh nguồn và thực nghiệm chính",
+    "headers": [
+      "Tiêu chí",
+      "Notebook nguồn",
+      "Dự án B5"
+    ],
+    "rows": [
+      [
+        "Loại mô hình",
+        "LSTM196",
+        "RNN196"
+      ],
+      [
+        "Số lớp / dữ liệu",
+        "2 lớp; 6.541 mẫu lọc",
+        "3 lớp; 14.353 mẫu sạch"
+      ],
+      [
+        "Fit tokenizer",
+        "Toàn corpus trước split",
+        "Chỉ train"
+      ],
+      [
+        "Duplicate isolation",
+        "Không kiểm soát trong source pipeline",
+        "Nhóm trùng không chéo split"
+      ],
+      [
+        "Chọn epoch",
+        "Epoch cuối (20)",
+        "Checkpoint validation Macro-F1"
+      ],
+      [
+        "Kết quả test",
+        "90,32% lịch sử; N=1.963",
+        "75,18% ± 1,34 đpt; N=2.149"
+      ],
+      [
+        "Macro-F1 / repeat seeds",
+        "Không thấy báo đủ trong nguồn",
+        "0,6914 ± 0,0158; 3 seeds"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hai mức Accuracy không đo cùng nhiệm vụ hoặc protocol. Báo cáo không tuyên bố tái tạo chính xác 90%, không xếp hạng RNN/LSTM bằng chênh lệch này và không suy ra phần giảm do bỏ leakage. Mục tiêu đã thực hiện là tái hiện có ghi nhận khác biệt, sau đó tổ chức thực nghiệm RNN độc lập có kiểm soát."
+  },
+  {
+    "type": "paragraph",
+    "text": "Hạn chế gồm một split chính cố định, chỉ ba training seeds, một dataset/miền tiếng Anh, số yếu tố khảo sát hữu hạn và neutral còn yếu. Duplicate grouping không bảo đảm loại mọi liên hệ ngữ nghĩa. Label confidence không được dùng làm trọng số hoặc feature. Rà soát định tính chưa có người adjudicate; softmax chưa hiệu chỉnh; cloud/GPU chưa kiểm chứng. Các kết quả đều được giữ, gồm run A2 thất thường."
+  },
+  {
+    "type": "paragraph",
+    "text": "CHƯƠNG 4. DEMO VÀ KHẢ NĂNG TÁI LẬP"
+  },
+  {
+    "type": "paragraph",
+    "text": "4.1. Chức năng và checkpoint sử dụng"
+  },
+  {
+    "type": "paragraph",
+    "text": "Demo local cho phép nhập một câu/tweet tiếng Anh và nhận sentiment dự đoán cùng xác suất negative, neutral, positive. Bộ inference tải models/final/model.keras, tokenizer.json, label_map.json và representation/config manifest. Demo dùng B5-balanced seed 3407, checkpoint epoch 16. Hash model cuối khớp checkpoint đã đánh giá; không huấn luyện hoặc fit tokenizer khi người dùng nhập câu."
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Hình 4.1. Ảnh chụp demo thực tế với một câu cảm ơn minh họa"
+  },
+  {
+    "type": "figure",
+    "path": "results/figures/F23_demo_report.png",
+    "title": "Hình 4.1. Ảnh chụp demo thực tế với một câu cảm ơn minh họa"
+  },
+  {
+    "type": "paragraph",
+    "text": "Ảnh trên minh họa một request thành công, không bổ sung mẫu vào test hoặc chứng minh Accuracy chung. Inference đi qua đúng P0, chuyển ID, post-padding/truncation T40, chạy softmax và chọn argmax. Các trường confidence/margin hoặc OOV nếu có chỉ mô tả request hiện tại. Câu ngoài miền hoặc bằng tiếng Việt có thể cho kết quả chưa đáng tin vì mô hình được đánh giá trên tweet tiếng Anh."
+  },
+  {
+    "type": "paragraph",
+    "text": "4.2. Giao diện, API và kiểm tra"
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 4.1. Các endpoint và hành vi đã kiểm tra"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 4.1. Các endpoint và hành vi đã kiểm tra",
+    "headers": [
+      "Endpoint",
+      "Chức năng / kiểm tra"
+    ],
+    "rows": [
+      [
+        "GET /",
+        "Logo trường, thông tin đề tài/nhóm, form và kết quả"
+      ],
+      [
+        "GET /api/health",
+        "Thông tin model và trạng thái"
+      ],
+      [
+        "GET /api/project",
+        "Thông tin trường, bài tiểu luận và ba thành viên"
+      ],
+      [
+        "POST /api/analyze",
+        "Stream JSON từng khâu, trả vector/nhãn/xác suất"
+      ],
+      [
+        "POST /api/predict",
+        "JSON có trường text; trả nhãn/xác suất"
+      ],
+      [
+        "Input rỗng / JSON lỗi",
+        "HTTP 400; thông báo lỗi"
+      ],
+      [
+        "Probabilities",
+        "Hữu hạn, trong [0,1], tổng gần 1"
+      ],
+      [
+        "Parity inference",
+        "Khớp 12 prediction đã lưu trong kiểm tra artifact"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "Website hiển thị logo/tên trường, khoa, đề tài, giảng viên và ba thành viên. Mỗi request hiển thị tám khâu: tiếp nhận văn bản, cleaning P0, token hóa, ánh xạ token thành ID, padding/masking, forward pass RNN, đọc softmax và chọn lớp bằng argmax. Có thể mở xem OOV, phần bị cắt và vector thật; vector không thể hiện mức đóng góp từ. Thời gian đo theo request, không phải benchmark latency. Demo chạy tại http://127.0.0.1:8765."
+  },
+  {
+    "type": "paragraph",
+    "text": "4.3. Cách chạy lại và cấu trúc sản phẩm"
+  },
+  {
+    "type": "paragraph",
+    "text": "README.md hướng dẫn tạo môi trường Python phù hợp, cài requirements đã pin, dùng dữ liệu CSV kèm theo hoặc lấy dataset bằng script có kiểm tra SHA-256. Notebook Airline_RNN_Complete.ipynb chạy các phase theo thứ tự; output hiện tại đã được thực thi top-to-bottom với các artifact của 22 run. Khi cấu hình/mã/dữ liệu thay đổi cần dùng output directory mới, không ghi đè provenance của thực nghiệm đã công bố."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng 4.2. Các thư mục và artifact để truy vết"
+  },
+  {
+    "type": "table",
+    "title": "Bảng 4.2. Các thư mục và artifact để truy vết",
+    "headers": [
+      "Thư mục / tệp",
+      "Nội dung"
+    ],
+    "rows": [
+      [
+        "data/raw, processed, splits",
+        "CSV gốc, exclusions, group/split manifests"
+      ],
+      [
+        "configs/ và airline_rnn/",
+        "Ma trận cấu hình và pipeline RNN"
+      ],
+      [
+        "models/runs và models/final",
+        "Checkpoint theo run; bộ inference cuối"
+      ],
+      [
+        "results/metrics và predictions",
+        "Classification reports, JSON metrics, row-level predictions"
+      ],
+      [
+        "results/figures và tables",
+        "23 hình PNG/PDF và bảng CSV"
+      ],
+      [
+        "notebooks/",
+        "Notebook hoàn chỉnh và HTML preview"
+      ],
+      [
+        "reports/final/",
+        "Báo cáo Word, slide và kịch bản thuyết trình"
+      ],
+      [
+        "README.md / environment/",
+        "Hướng dẫn chạy, versions, kiểm tra protocol"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "25 kiểm tra đã pass, gồm 11 kiểm tra protocol/holdout gate, 10 trường hợp trace/input và 4 kiểm tra tương thích sau đổi tên. Kiểm tra artifact xác nhận fingerprint của 22 run, không overlap trong split sạch, source tokenizer parity trên 6.541 tweet, tính lại metrics/confusion matrix của 10 test prediction files và inference parity. Các kiểm tra kỹ thuật tăng khả năng truy vết nhưng không thay thế đánh giá tổng quát hóa trên dữ liệu mới."
+  },
+  {
+    "type": "paragraph",
+    "text": "4.4. Kịch bản trình diễn và mở rộng"
+  },
+  {
+    "type": "paragraph",
+    "text": "Kịch bản khoảng một phút: giới thiệu checkpoint, nhập câu cảm ơn minh họa, đọc ba xác suất, sau đó dùng một case sai từ test để giải thích hạn chế. Người trình bày cần phân biệt nhãn được mô hình trả với nhãn tự đánh giá của câu demo. Không lựa chọn lại seed/config theo các câu thử trực tiếp, không dùng demo để điều chỉnh metric đã công bố."
+  },
+  {
+    "type": "paragraph",
+    "text": "Các mở rộng cần rà nhãn bởi hai người và holdout mới. Dấu câu/emoji/target mention, calibration, clipping, dropout, LR, vocabulary và embedding dimension chưa có đối chứng trong ma trận hiện tại. So sánh LSTM/GRU/Transformer cần tách riêng với dataset/protocol/ngân sách công bằng; RNN vẫn là mô hình chính."
+  },
+  {
+    "type": "paragraph",
+    "text": "KẾT LUẬN"
+  },
+  {
+    "type": "paragraph",
+    "text": "Đề tài đã xây dựng một thực nghiệm Sentiment Analysis bằng RNN có quy trình kiểm tra nguồn, xử lý dữ liệu, chia nhóm trùng, huấn luyện lặp seeds, chọn mô hình trên validation và đánh giá cuối trên test. Audit xác định notebook Kaggle thực tế dùng LSTM và binary, nên A1 được trình bày là baseline chuyển thể thay vì khẳng định tái lập công bố 90%."
+  },
+  {
+    "type": "paragraph",
+    "text": "Trong benchmark ba lớp, B5-balanced có validation Macro-F1 cao nhất trong ma trận đã thử và đạt mean Test Accuracy 75,18% ± 1,34 điểm phần trăm, Macro-F1 0,6914 ± 0,0158. Class weighting cải thiện F1 neutral/positive với trade-off ở negative. T60 không bổ sung ngữ cảnh so với T40 trong dataset đã làm sạch nhưng tăng chi phí; số hidden units nhỏ hơn có thể giảm thời gian mà không làm Macro-F1 giảm rõ trong miền khảo sát."
+  },
+  {
+    "type": "paragraph",
+    "text": "Phân tích confusion matrix chỉ ra neutral là lớp khó nhất của checkpoint demo, positive thường nhầm neutral và negative có F1 cao nhất. Error slices chịu ảnh hưởng class mix, còn các ví dụ mixed sentiment, sarcasm và target ambiguity là giả thuyết định tính cần nhóm kiểm tra. Kết quả chưa chứng minh tổng quát hóa ngoài miền, ý nghĩa thống kê rộng hoặc softmax calibration."
+  },
+  {
+    "type": "paragraph",
+    "text": "Sản phẩm gồm notebook, dataset/provenance, 22 run/checkpoints/history, bảng/hình/metrics, demo local và hướng dẫn chạy lại. Báo cáo và slide sử dụng cùng nguồn số liệu, không tạo Accuracy/F1 giả. Những mở rộng sau bàn giao cần protocol mới với holdout chưa dùng để duy trì tính đáng tin cậy của đánh giá."
+  },
+  {
+    "type": "paragraph",
+    "text": "TÀI LIỆU THAM KHẢO"
+  },
+  {
+    "type": "paragraph",
+    "text": "[1] Bo Pang và Lillian Lee (2008), Opinion Mining and Sentiment Analysis, Foundations and Trends in Information Retrieval 2(1–2), 1–135.\nhttps://www.cs.cornell.edu/home/llee/opinion-mining-sentiment-analysis-survey.html"
+  },
+  {
+    "type": "paragraph",
+    "text": "[2] Chibuzor Okocha, Airline Sentiment Analysis (90% Accuracy) using RNN, Kaggle; version 1/scriptVersionId 120745701. Bản nguồn và output audit lưu trong sources/.\nhttps://www.kaggle.com/code/chibuzorokocha/airline-sentiment-analysis-90-accuracy-using-rnn"
+  },
+  {
+    "type": "paragraph",
+    "text": "[3] CrowdFlower, Twitter US Airline Sentiment, Kaggle dataset, Tweets.csv.\nhttps://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment"
+  },
+  {
+    "type": "paragraph",
+    "text": "[4] Keras, Embedding layer, API documentation. Version triển khai dự án: Keras 3.11.3.\nhttps://keras.io/api/layers/core_layers/embedding/"
+  },
+  {
+    "type": "paragraph",
+    "text": "[5] Keras, RNN layer, API documentation.\nhttps://keras.io/api/layers/recurrent_layers/simple_rnn/"
+  },
+  {
+    "type": "paragraph",
+    "text": "[6] Razvan Pascanu, Tomas Mikolov và Yoshua Bengio (2013), On the Difficulty of Training Recurrent Neural Networks, arXiv:1211.5063.\nhttps://arxiv.org/abs/1211.5063"
+  },
+  {
+    "type": "paragraph",
+    "text": "[7] Diederik P. Kingma và Jimmy Ba (2015), Adam: A Method for Stochastic Optimization, ICLR, arXiv:1412.6980.\nhttps://arxiv.org/abs/1412.6980"
+  },
+  {
+    "type": "paragraph",
+    "text": "[8] Nitish Srivastava và cộng sự (2014), Dropout: A Simple Way to Prevent Neural Networks from Overfitting, JMLR 15, 1929–1958.\nhttps://jmlr.org/papers/v15/srivastava14a.html"
+  },
+  {
+    "type": "paragraph",
+    "text": "[9] scikit-learn 1.7.2 documentation, f1_score; macro/weighted averaging và zero_division.\nhttps://scikit-learn.org/1.7/modules/generated/sklearn.metrics.f1_score.html"
+  },
+  {
+    "type": "paragraph",
+    "text": "[10] Chuan Guo, Geoff Pleiss, Yu Sun và Kilian Q. Weinberger (2017), On Calibration of Modern Neural Networks, ICML, PMLR 70, 1321–1330.\nhttps://proceedings.mlr.press/v70/guo17a.html"
+  },
+  {
+    "type": "paragraph",
+    "text": "Tài liệu trực tuyến đối chiếu ngày 06/10/2026. Số liệu thực nghiệm lấy từ artifact của dự án, không lấy từ các bài báo lý thuyết."
+  },
+  {
+    "type": "paragraph",
+    "text": "PHỤ LỤC. TRUY VẾT VÀ THÔNG TIN NHÓM"
+  },
+  {
+    "type": "paragraph",
+    "text": "A.1. Fingerprint và nguồn số liệu"
+  },
+  {
+    "type": "paragraph",
+    "text": "SHA-256 của Tweets.csv gốc: ea94b23f41892b290dec3330bb8cf9cb6b8bc669eaae5f3a84c40f7b0de8f15e. Model cuối: 94b36f13b045bebb406a11e753c40c32b83b6565bf3f0ddcde448144fc7cbba9. Các hash đầy đủ cho tokenizer/config/label map nằm trong models/final/manifest.json. Dùng hash để kiểm tra file chuyển máy không bị thay đổi."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng A.1. Ánh xạ số liệu báo cáo sang artifact"
+  },
+  {
+    "type": "table",
+    "title": "Bảng A.1. Ánh xạ số liệu báo cáo sang artifact",
+    "headers": [
+      "Nội dung",
+      "Nguồn trong project"
+    ],
+    "rows": [
+      [
+        "Validation / test mean±SD",
+        "results/tables/validation_summary.csv; test_summary.csv"
+      ],
+      [
+        "Per-class / CM demo",
+        "final_per_class.csv; B5-balanced_seed-3407_test.json"
+      ],
+      [
+        "Split / chất lượng dữ liệu",
+        "dataset_splits.csv; exclusions.csv; data/splits/"
+      ],
+      [
+        "History / epoch / time",
+        "models/runs/*/seed-*/history.csv và metadata"
+      ],
+      [
+        "Ví dụ/qualitative hypotheses",
+        "manual_error_review.csv; assistant_error_review.csv"
+      ],
+      [
+        "Mục đích 23 hình",
+        "results/figures/manifest.json"
+      ],
+      [
+        "Protocol verification",
+        "results/metrics/artifact_verification.json"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": "A.2. Thành viên và đóng góp thực tế"
+  },
+  {
+    "type": "paragraph",
+    "text": "Nhóm thực hiện gồm ba thành viên dưới đây. Phần đóng góp được điền theo công việc thực tế của từng thành viên."
+  },
+  {
+    "type": "paragraph",
+    "text": "Bảng A.2. Danh sách thành viên nhóm"
+  },
+  {
+    "type": "table",
+    "title": "Bảng A.2. Danh sách thành viên nhóm",
+    "headers": [
+      "Họ tên",
+      "MSSV",
+      "Đóng góp thực tế"
+    ],
+    "rows": [
+      [
+        "Trịnh Nguyễn Anh Hào",
+        "2611307",
+        "[Nhóm điền]"
+      ],
+      [
+        "Lê Huy Huân",
+        "2611308",
+        "[Nhóm điền]"
+      ],
+      [
+        "Nguyễn Nam Triều Tiên",
+        "2611323",
+        "[Nhóm điền]"
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  },
+  {
+    "type": "paragraph",
+    "text": ""
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "school": "TRƯỜNG ĐẠI HỌC CÔNG NGHỆ KỸ THUẬT THÀNH PHỐ HỒ CHÍ MINH",
+  "faculty": "Khoa Công nghệ thông tin",
+  "course": "Deep Learning",
+  "class_name": "KMT26ANC",
+  "program": "Khoa học máy tính",
+  "title": "Xây dựng mô hình phân tích cảm xúc khách hàng trong ngành hàng không sử dụng RNN",
+  "teacher": "PGS. TS. Hoàng Văn Dũng",
+  "year": "2026",
+  "members": [
+    {"student_id": "2611307", "name": "Trịnh Nguyễn Anh Hào"},
+    {"student_id": "2611308", "name": "Lê Huy Huân"},
+    {"student_id": "2611323", "name": "Nguyễn Nam Triều Tiên"}
+  ],
+  "logo_source": "Logo được trích nguyên vẹn từ file Word mẫu do người dùng cung cấp."
+}
